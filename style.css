@@ -1,0 +1,113 @@
+/* formatação do estilo padrão da página */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+/* estilos padrão */
+:root{
+   
+    ---font-style-title: arial, Helvetica, sans-serif;
+    ---font-color-icons: #06DBFF;
+    ---font-color-title: #FFFFFF;
+    ---background-color-top-bar:#050505;
+    ---theme-color: rgb(8, 194, 132);
+    
+    background: #262626;
+    background: radial-gradient(circle, rgba(38, 38, 38, 1) 10%, rgba(5, 5, 5, 1) 99%);
+}
+
+.main-container{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* estilo padrão para a tela que está "escondida" */
+.screen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* estilo padrão para a tela que está ativa */
+.screen.active{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* título principal do sistema */
+h1{
+    height: 15%;
+    max-height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+
+    border-radius: 0 0 10rem 10rem;
+    padding: 0 100px 0 100px;
+    box-shadow: 0 4px 4px #6464648f;
+
+    font-size: 2em;
+    font-family: var(---font-style-title);
+    color: var(---font-color-title);
+}
+
+/* menu principal */
+#main-menu{
+    height: auto;
+    padding: 10%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20%;
+
+    color: var(---font-color-icons);
+    font-family: var(---font-style-title);
+}
+
+#main-menu{
+    text-align: center;
+}
+
+/* formato para icones de imagem */
+#main-menu li img{
+    width: 5rem;
+    max-width: 50px;
+}
+
+#main-menu li{
+    cursor: pointer;
+}
+
+#copyright{
+    font-size: 0.8rem;
+    color: #635B5B;
+
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+}
+
+/* tela do painel de controle */
+.screenStyle{
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    flex-direction: column;
+    color: white;
+}
