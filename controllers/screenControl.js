@@ -1,6 +1,6 @@
-export function injetarHtml(caminho, id){
+export function injetarHtml(path, id){
 
-    fetch(caminho).then(response => {
+    fetch(path).then(response => {
         if (!response.ok) {
             // se o arquivo não existir ou der erro, avisa no console
             throw new Error("Erro ao carregar a tela: " + response.statusText);
@@ -8,8 +8,8 @@ export function injetarHtml(caminho, id){
         return response.text();
     })
         .then(html => {
-            const divConteudo= document.getElementById(`${id}`);
-            divConteudo.innerHTML = html
+            const divContent= document.getElementById(`${id}`);
+            divContent.innerHTML = html
         })
 }
 
