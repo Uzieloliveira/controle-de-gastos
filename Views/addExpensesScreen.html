@@ -1,29 +1,29 @@
 <div id="add-expenses" class="screenStyle">
     <h1>Adicionar despesa</h1>
-    <form action="">
+    <form>
         <div class="inputType">
             <p>Tipo de despesa</p>
-            <input type="text">
+            <input id="description" type="text" required>
         </div>
 
         <div class="inputAmount">
             <p>Valor</p>
-            <input type="text">
+            <input id="amount" type="text" required>
         </div>
 
         <div class="inputDueDate">
             <p>Data Vencimento</p>
             <div id="day_Month_Year">
-                <input type="number" id="day">
+                <input type="text" id="day">
 
-                <input type="number" id="month">
+                <input type="text" id="month">
 
-                <input type="number" id="year">
+                <input type="text" id="year">
             </div>
         </div>
 
         <div class="buttonSubmit">
-            <button>Adicionar</button>
+            <button class="submit" type="submit">Adicionar</button>
         </div>
     </form>
 </div>

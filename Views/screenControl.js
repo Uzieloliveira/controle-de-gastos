@@ -1,4 +1,4 @@
-export function injetarHtml(path, id){
+export function injetarHtml(path, id) {
 
     fetch(path).then(response => {
         if (!response.ok) {
@@ -8,12 +8,12 @@ export function injetarHtml(path, id){
         return response.text();
     })
         .then(html => {
-            const divContent= document.getElementById(`${id}`);
+            const divContent = document.getElementById(`${id}`);
             divContent.innerHTML = html
         })
 }
 
- // Função responsável por chamar uma nova tela 
+// Função responsável por chamar uma nova tela 
 export function chamarNovaTela(name_screen) {
     const pathScreen = `Views/${name_screen}`;
     const currentScreen = document.querySelector('.active');
