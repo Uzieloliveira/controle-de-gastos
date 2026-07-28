@@ -1,46 +1,35 @@
-
 <div id="list" class="screenStyle">
-    <h1>Lista de despesas</h1>
+  <h1>Lista de despesas</h1>
 
-    <!-- area para fitrar a forma de visualização -->
-    <div class="search">
+  <!-- area para fitrar a forma de visualização -->
+  <div class="search">
 
-        <!-- filtro -->
-        <div class="buttonSearch">
-            <button><img src="Views/img/filtro.png" alt="" style="width: 3rem;"></button>
-            <p>busca personalizada</p>
-        </div>
-
-        <!-- Aparece o filtro selecionado, pode ser (mensal, diário)-->
-        <div class="filterShowed">
-            <p>mensal   x</p>
-        </div>
-
-        <table id="table-expenses">
-  <thead>
-    <tr>
-      <th>Tipo de despesa</th>
-      <th>Valor</th>
-    <th>Dia vencimento</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>água</td>
-      <td>50 R$</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <td>compra do mês</td>
-      <td>500 R$</td>
-      <td>Na</td>
-    </tr>
-    <tr>
-      <td>luz</td>
-      <td>150 R$</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
+    <!-- filtro -->
+    <div class="buttonSearch">
+      <button><img src="Views/img/filtro.png" alt="" style="width: 3rem;"></button>
+      <p>busca personalizada</p>
     </div>
+
+    <!-- Aparece o filtro selecionado, pode ser (mensal, diário)-->
+    <div class="filterShowed">
+      <p>mensal x</p>
+    </div>
+
+    <div class="table-container">
+      <table id="list-expenses">
+        <thead>
+          <tr>
+            <th>Tipo de despesa</th>
+            <th>Valor</th>
+            <th>Dia vencimento</th>
+          </tr>
+
+        </thead>
+        <tbody id="list-content">
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>
