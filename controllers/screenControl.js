@@ -25,41 +25,12 @@ export function chamarNovaTela(name_screen) {
 
     if (currentScreen) {
         currentScreen.classList.remove('active');
+        currentScreen.classList.add('noActive');
     }
 
     if (newScreen) {
         newScreen.classList.add('active');
+        newScreen.classList.remove('noActive');
     }
 }
 
-export function inserirDadosNaLista() {
-
-    const dados = obterTodoLocalStorage();
-    // const tabela = document.getElementById('itens-expenses');
-    let lista = '';
-
-    for (let dado in dados) {
-
-        lista +=
-            `<tr>
-            <td>${dados[dado].descricao}</td>
-            <td>${dados[dado].valor}R$</td>
-            <td>${dados[dado].data_Vencimento}</td>
-        </tr>`
-
-    }
-
-    fetch("./Views/listScreen").then(response => {
-        if (!response.ok) {
-            // se o arquivo não existir ou der erro, avisa no console
-            throw new Error("Erro ao carregar a tela: " + response.statusText);
-        }
-        return response.text();
-    })
-        .then(html => {
-            const tabela = document.querySelector('tbody');
-            if (tabela) {
-                tabela.innerHTML = lista;
-            }
-        })
-}

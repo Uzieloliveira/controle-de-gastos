@@ -3,11 +3,13 @@
     flex-direction: column;
     height: 100vh;
     width: 100%;
-    overflow: hidden; /* Impede que a página inteira role */
+    overflow: hidden;
+    /* Impede que a página inteira role */
     box-sizing: border-box;
 }
 
-#list h1, #add-expenses h1{
+#list h1,
+#add-expenses h1 {
     width: 100%;
     height: 12%;
     min-height: 80px;
@@ -18,35 +20,41 @@
     flex-shrink: 0;
 }
 
-.search{
+.search {
     width: 100%;
     margin-top: 20px;
 }
 
-.search .buttonSearch{
+.search .buttonSearch {
     display: flex;
-    align-items: center;
-    padding:  10px;
+    flex-direction: column;
+    padding: 10px;
 
     font-size: 1.5rem;
     font-family: var(---font-style-title);
     gap: 5%;
-    
-    background-color: rgba(44, 46, 46, 0.37);
-}   
 
-.search button{
+    background-color: rgba(44, 46, 46, 0.37);
+}
+
+.search .buttonSearch .button {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search button {
     background: transparent;
     border-style: none;
 }
 
-.search .filterShowed{
+.search .filterShowed {
     padding: 2%;
     display: flex;
     justify-content: center;
 }
 
-.search .filterShowed p{
+.search .filterShowed p {
     width: 80%;
 
     background-color: var(---theme-color);
@@ -58,17 +66,17 @@
 
     font-size: 1rem;
     font-family: var(---font-style-title);
-    
+
     border-radius: 20px;
 }
 
 /* estilo para tela de cadastro de despesas */
-#add-expenses{
+#add-expenses {
     height: 100vh;
     width: 100%;
 }
 
-#add-expenses form{
+#add-expenses form {
     height: 85%;
 
     padding: 10% 20px;
@@ -76,7 +84,7 @@
     flex-direction: column;
 }
 
-#add-expenses form div{
+#add-expenses form div {
     display: flex;
     height: 10%;
     font-size: 1.3rem;
@@ -84,10 +92,16 @@
     justify-content: space-between;
 }
 
-#add-expenses form .inputType input, #add-expenses form .inputAmount input{
+#add-expenses form .inputType p,
+#add-expenses form .inputAmount p {
+    width: 9rem;
+}
+
+#add-expenses form .inputType input,
+#add-expenses form .inputAmount input {
     height: 80%;
     width: 100%;
-    max-width: 250px;
+    min-width: 220px;
 
     border-radius: 0.5rem;
     border-style: none;
@@ -96,42 +110,43 @@
     text-align: center;
 }
 
-.inputDueDate{
+.inputDueDate {
     flex-direction: column;
-    align-items:normal;
-    height: 50%;
+    align-items: normal;
+    height: 100%;
+    min-height: 20px;
 }
 
-.inputDueDate #day_Month_Year{
+.inputDueDate #day_Month_Year {
     height: 100%;
     padding: 10px 10%;
     border: solid 1px #494949;
     min-height: 50px;
 }
 
-.inputDueDate #day_Month_Year input{
+.inputDueDate #day_Month_Year input {
     border-radius: 0.5rem;
 
     text-align: center;
 }
 
-.inputDueDate #day{
+.inputDueDate #day {
     width: 25%;
 }
 
-.inputDueDate #month{
+.inputDueDate #month {
     width: 25%;
 }
 
-.inputDueDate #year{
+.inputDueDate #year {
     width: 35%;
 }
 
-.buttonSubmit{
+.buttonSubmit {
     margin-top: 20%;
 }
 
-.buttonSubmit button{
+.buttonSubmit button {
     width: 80%;
 
     margin: 0 auto;
@@ -147,9 +162,11 @@
 /* Estilo para a tabela que mostra a lista de despesas*/
 /* Container que limita a altura da tabela e cria a rolagem */
 .table-container {
-    height: 100vh;  
-    overflow-y: auto;   /* Cria a barra de rolagem vertical apenas na tabela */
-    overflow-x: auto;   /* Evita quebras em telas menores */
+    height: 100vh;
+    overflow-y: auto;
+    /* Cria a barra de rolagem vertical apenas na tabela */
+    overflow-x: auto;
+    /* Evita quebras em telas menores */
     width: 100%;
     margin-top: 10px;
 }
@@ -158,7 +175,7 @@
 #list-expenses {
     width: 100%;
     border-collapse: collapse;
-    
+    font-family: var(---font-style-title);
 }
 
 /* Mantém os títulos das colunas visíveis no topo durante a rolagem */
@@ -174,4 +191,40 @@
 #list-expenses td {
     padding: 1rem 0.1rem;
     text-align: center;
+}
+
+#list-expenses #list-content #table_row {
+    background-color: #333232;
+}
+
+.filterSelector {
+    height: auto;
+    max-width: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(---theme-color);
+
+    border-radius: 2rem;
+    border: solid 2px;
+    padding: 0 10px 0 0;
+    margin-top: 10px;
+
+}
+
+.filterSelector select {
+    width: 100%;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #013314;
+    font-weight: 700;
+}
+
+.filterSelector select option {
+    color: rgb(255, 254, 254);
+    background-color: #010804;
 }

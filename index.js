@@ -3,7 +3,7 @@ import { injetarHtml } from "./controllers/screenControl.js";
 import { chamarNovaTela } from "./controllers/screenControl.js";
 import { salvarDados } from "./repositories/addExpensesDAO.js";
 import { obterTodoLocalStorage } from "./repositories/addExpensesDAO.js";
-import { inserirDadosNaLista } from "./controllers/screenControl.js";
+import { inserirDadosNaLista } from "./repositories/addExpensesDAO.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -60,10 +60,8 @@ document.addEventListener('submit', (event) => {
             const date = day + '-' + month + '-' + year // concatenação dos resultados de dia, mes e ano informados, para salvamento no formato correto!
 
             // chamada da função responsável por guardar os dados no localhost da página
-            salvarDados(description, amount.toString(), date);
+            salvarDados(description, amount.toString(), day);
 
         }
     }
 })
-
-
