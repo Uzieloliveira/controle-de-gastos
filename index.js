@@ -1,9 +1,6 @@
 //Importação das funções
-import { injetarHtml } from "./controllers/screenControl.js";
-import { chamarNovaTela } from "./controllers/screenControl.js";
-import { salvarDados } from "./repositories/addExpensesDAO.js";
-import { obterTodoLocalStorage } from "./repositories/addExpensesDAO.js";
-import { inserirDadosNaLista } from "./repositories/addExpensesDAO.js";
+import { injetarHtml, chamarNovaTela } from "./controllers/screenControl.js";
+import { filtrarDadosNaLista, salvarDados, inserirDadosNaLista, obterTodoLocalStorage } from "./repositories/addExpensesDAO.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -38,7 +35,7 @@ document.addEventListener('click', (event) => {
 
 })
 
-
+// Captura dos valores dos inputs da tela de cadatro de despesas
 document.addEventListener('submit', (event) => {
 
     // identifica o evento de submit do botão clicado
@@ -57,11 +54,41 @@ document.addEventListener('submit', (event) => {
             const day = document.getElementById('day').value;
             const month = document.getElementById('month').value;
             const year = document.getElementById('year').value;
-            const date = day + '-' + month + '-' + year // concatenação dos resultados de dia, mes e ano informados, para salvamento no formato correto!
 
             // chamada da função responsável por guardar os dados no localhost da página
-            salvarDados(description, amount.toString(), day);
+            salvarDados(description, amount.toString(), day, month, year);
 
         }
     }
+})
+
+// captura o valor selecionado no input de opções, esse valor pode ser: (month, year, all) / referente ao tipo de filtro de exibição!
+document.addEventListener('click', (event) => {
+
+    const btn_resultFilter = event.target.closest('button')
+
+    if (btn_resultFilter) {
+
+        let valueMonth_home = null;
+        let valueMonth_end = null;
+
+        // caso o primeiro input do tipo month foi modificado, pega o valor do input e salva na variável de nome 'valueMonth_home'
+        if (btn_resultFilter.matches('#resultFilter')) {
+
+            valueMonth_home = document.getElementById('inputMonth_home').value
+            valueMonth_end = document.getElementById('inputMonth_end').value
+
+            if (valueMonth_home !== '' && valueMonth_end !== '') {
+
+                // a função que insere os dados na lista é chamada e recebe os valores dos inputs do tipo month, como parâmetros!
+                filtrarDadosNaLista(valueMonth_home, valueMonth_end)
+
+            } else {
+                console.error("dados de entrada não foram encontrados!")
+            }
+
+        }
+
+    }
+
 })

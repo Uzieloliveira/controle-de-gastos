@@ -5,21 +5,24 @@
   <div class="search">
 
     <!-- filtro -->
-    <div class="buttonSearch">
-      <div class="button">
-        <p>busca personalizada</p>
-      </div>
+    <div class="filter">
+
+      <div class="month">
+        <p>Adicionar filtro:</p>
+        <div id="filterInputs">
+
+          <div class="inputs">
+            <input type="month" id="inputMonth_home">
+            <span>até</span>
+            <input type="month" id="inputMonth_end">
+          </div>
+
+          <button id="resultFilter">
+            filtrar resultados
+          </button>
+        </div>
 
 
-      <div class="filterSelector">
-
-        <img src="Views/img/filtro.png" alt="" style="width: 3rem;">
-
-        <select id="filter-category" name="category">
-          <option value="all">Todo o período</option>
-          <option value="month">Mensal</option>
-          <option value="year">Anual</option>
-        </select>
       </div>
 
     </div>
@@ -30,7 +33,7 @@
           <tr>
             <th>Tipo de despesa</th>
             <th>Valor</th>
-            <th>Dia vencimento</th>
+            <th>Vencimento</th>
           </tr>
 
         </thead>

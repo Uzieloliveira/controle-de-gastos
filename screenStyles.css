@@ -25,7 +25,7 @@
     margin-top: 20px;
 }
 
-.search .buttonSearch {
+.search .filter {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -37,38 +37,6 @@
     background-color: rgba(44, 46, 46, 0.37);
 }
 
-.search .buttonSearch .button {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.search button {
-    background: transparent;
-    border-style: none;
-}
-
-.search .filterShowed {
-    padding: 2%;
-    display: flex;
-    justify-content: center;
-}
-
-.search .filterShowed p {
-    width: 80%;
-
-    background-color: var(---theme-color);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1%;
-
-    font-size: 1rem;
-    font-family: var(---font-style-title);
-
-    border-radius: 20px;
-}
 
 /* estilo para tela de cadastro de despesas */
 #add-expenses {
@@ -197,34 +165,45 @@
     background-color: #333232;
 }
 
-.filterSelector {
-    height: auto;
-    max-width: 500px;
+.filter .month{
+    font-size: 0.8rem;
+    border: solid 2px #666666;
+    border-radius: 10px;
+}
 
+#filterInputs{
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    background-color: var(---theme-color);
-
-    border-radius: 2rem;
-    border: solid 2px;
-    padding: 0 10px 0 0;
-    margin-top: 10px;
-
+    padding: 10px;
+    flex-direction: column;
+    border: solid 0.5px #666666;
+    border-radius: 10px;
 }
 
-.filterSelector select {
+#filterInputs .inputs{
+    display: flex;
+    align-items: center;
     width: 100%;
-    font-size: 1.2rem;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #013314;
-    font-weight: 700;
+    justify-content: space-between;
 }
 
-.filterSelector select option {
-    color: rgb(255, 254, 254);
-    background-color: #010804;
+#inputMonth_home,
+#inputMonth_end{
+    width: 45%;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.6rem;
+}
+
+#filterInputs button{
+    width: 100%; 
+    background-color: var(---theme-color); 
+    color: oldlace;
+    border-radius: 50px; 
+    border-style: none; 
+    margin-top: 10px;
+    padding: 5px;
+    cursor: pointer;
 }
