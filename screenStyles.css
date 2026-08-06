@@ -30,11 +30,7 @@
     flex-direction: column;
     padding: 10px;
 
-    font-size: 1.5rem;
     font-family: var(---font-style-title);
-    gap: 5%;
-
-    background-color: rgba(44, 46, 46, 0.37);
 }
 
 
@@ -166,7 +162,7 @@
 }
 
 .filter .month{
-    font-size: 0.8rem;
+    font-size: 1rem;
     border: solid 2px #666666;
     border-radius: 10px;
 }
@@ -183,27 +179,33 @@
 
 #filterInputs .inputs{
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     justify-content: space-between;
+
 }
 
 #inputMonth_home,
 #inputMonth_end{
-    width: 45%;
+    width: 80%;
+    height: 6vh;
     border-radius: 10px;
     text-align: center;
     padding: 5px;
-    font-size: 0.6rem;
+    font-size: 1rem;
 }
 
 #filterInputs button{
-    width: 100%; 
+    width: 80%; 
+    height: 5vh;
     background-color: var(---theme-color); 
-    color: oldlace;
-    border-radius: 50px; 
-    border-style: none; 
+    background: var(---button-color-gradient);
+    color: rgb(229, 233, 230);
+    border-radius: 50px;
+    border: solid 2px #03462f;
     margin-top: 10px;
     padding: 5px;
     cursor: pointer;
+    font-size: 1rem;
 }

@@ -12,11 +12,10 @@
     ---font-style-title: arial, Helvetica, sans-serif;
     ---font-color-icons: #06DBFF;
     ---font-color-title: #FFFFFF;
-    ---background-color-top-bar:#050505;
+    ---background-color-top-bar: radial-gradient(circle, rgba(38, 38, 38, 1) 10%, rgba(5, 5, 5, 1) 99%);
     ---theme-color: rgb(8, 194, 132);
-    
-    background: #262626;
-    background: radial-gradient(circle, rgba(38, 38, 38, 1) 10%, rgba(5, 5, 5, 1) 99%);
+    ---button-color-gradient: radial-gradient(circle, rgba(8, 194, 132, 1) 21%, rgba(24, 87, 55, 1) 88%);
+   
 }
 
 .main-container{
@@ -25,6 +24,8 @@
     height: 100vh;
     margin: 0;
     padding: 0;
+    background-color:#262626;
+    background: var(---background-color-top-bar);
 }
 
 /* estilo padrão para a tela que está "escondida" */
