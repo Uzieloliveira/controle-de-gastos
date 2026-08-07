@@ -12,9 +12,9 @@
     ---font-style-title: arial, Helvetica, sans-serif;
     ---font-color-icons: #06DBFF;
     ---font-color-title: #FFFFFF;
-    ---background-color-top-bar: radial-gradient(circle, rgba(38, 38, 38, 1) 10%, rgba(5, 5, 5, 1) 99%);
+    ---background-color-top-bar: radial-gradient(circle, rgb(85, 85, 85) 10%, rgb(0, 0, 0) 99%);
     ---theme-color: rgb(8, 194, 132);
-    ---button-color-gradient: radial-gradient(circle, rgba(8, 194, 132, 1) 21%, rgba(24, 87, 55, 1) 88%);
+    ---background-color-gradient: radial-gradient(circle, rgba(8, 194, 132, 1) 21%, rgba(24, 87, 55, 1) 88%);
    
 }
 
@@ -114,4 +114,25 @@ h1{
 
     flex-direction: column;
     color: white;
+}
+
+/* estilo para a barra que mostra as informações de valor e tipo de despesas */
+#displayInformations{
+    height: 5vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#total_Sum{
+    height: 100%;
+    width: 100%;
+    background-color: var(---theme-color);
+    background: var(---background-color-gradient);
+    display: flex;
+    align-items: center;
+    padding-left: 3vw;
+    font-family: var(---font-style-title);
+    color: #000200;
+    font-weight: 600;
 }

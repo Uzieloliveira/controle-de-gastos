@@ -1,5 +1,3 @@
-import { obterTodoLocalStorage } from "../repositories/addExpensesDAO.js";
-
 export function injetarHtml(path, id) {
 
     fetch(path).then(response => {

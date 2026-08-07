@@ -73,7 +73,7 @@ export function inserirDadosNaLista() {
 
     const dados = obterTodoLocalStorage();
     let dateVerified = null;
-
+    let totalSum = 0;
     let lista = '';
 
     for (let dado in dados) {
@@ -89,6 +89,9 @@ export function inserirDadosNaLista() {
             <td>${dados[dado].data[0]}-${dados[dado].data[1]}-${dados[dado].data[2]}</td>
             </tr>`
 
+             // faz a soma de todos os valores dos resultados armazenados
+            totalSum += Number(dados[dado].valor) 
+
         } else {
             lista +=
                 `<tr id = "table_row">
@@ -96,6 +99,8 @@ export function inserirDadosNaLista() {
             <td style= "text-align: right;"><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
             <td>Na</td>
             </tr>`
+
+            totalSum += Number(dados[dado].valor)
         }
 
     }
@@ -112,6 +117,11 @@ export function inserirDadosNaLista() {
             if (tabela) {
                 tabela.innerHTML = lista;
             }
+            const informacoes = document.querySelector("#displayInformations");
+
+            if(informacoes){
+                informacoes.innerHTML = ` <div id="total_Sum"><p>Valor total:</p>&nbsp<p>${totalSum} R$</p></div>`
+            }
         })
 }
 
@@ -120,6 +130,7 @@ export function filtrarDadosNaLista(month_home, month_end) {
 
     const dados = obterTodoLocalStorage();
     let dateVerified = null;
+    let totalSumFilter = 0;
 
     let lista = '';
     let month_home_splited = '';
@@ -158,6 +169,9 @@ export function filtrarDadosNaLista(month_home, month_end) {
                 <td style= "text-align: right;"><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
                 <td>${dados[dado].data[0]}-${dados[dado].data[1]}-${dados[dado].data[2]}</td>
                 </tr>`
+
+                // faz a soma de todos os valores dos resultados filtrados
+                totalSumFilter += Number(dados[dado].valor) 
             }
 
         }
@@ -175,6 +189,12 @@ export function filtrarDadosNaLista(month_home, month_end) {
             const tabela = document.querySelector('tbody');
             if (tabela) {
                 tabela.innerHTML = lista;
+            }
+
+            const informacoes = document.querySelector("#displayInformations");
+
+            if(informacoes){
+                informacoes.innerHTML = ` <div id="total_Sum"><p>Valor total:</p>&nbsp<p>${totalSumFilter} R$</p></div>`
             }
         })
 }
