@@ -69,14 +69,11 @@ document.addEventListener('click', (event) => {
 
     if (btn_resultFilter) {
 
-        let valueMonth_home = null;
-        let valueMonth_end = null;
-
         // caso o primeiro input do tipo month foi modificado, pega o valor do input e salva na variável de nome 'valueMonth_home'
         if (btn_resultFilter.matches('#resultFilter')) {
 
-            valueMonth_home = document.getElementById('inputMonth_home').value
-            valueMonth_end = document.getElementById('inputMonth_end').value
+            var valueMonth_home = document.getElementById('inputMonth_home').value
+            var valueMonth_end = document.getElementById('inputMonth_end').value
 
             if (valueMonth_home !== '' && valueMonth_end !== '') {
 

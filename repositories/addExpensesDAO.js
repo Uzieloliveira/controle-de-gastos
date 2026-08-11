@@ -148,11 +148,6 @@ export function filtrarDadosNaLista(month_home, month_end) {
         month_end_splited = date_splited_end[1]
         year_end_splited = date_splited_end[0]
 
-        console.log('mes início: ' + month_home_splited)
-        console.log('mes fim: ' + month_end_splited)
-        console.log('ano início: ' + year_home_splited)
-        console.log('ano fim: ' + year_end_splited)
-
     }
 
     for (let dado in dados) {
