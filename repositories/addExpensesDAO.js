@@ -53,33 +53,34 @@ export function obterTodoLocalStorage() {
 }
 
 // função para verificar se existe valor cadastrado para data
-function verificarData(data) {
+// function verificarData(data) {
 
-    let result = null
+//     let result = null
 
-    for (let i = 0; i < 3; i++) {
+//     for (let i = 0; i < 3; i++) {
 
-        if (data[i] !== "") {
-            result = true
-        } else {
-            result = false
-        }
-    }
+//         if (data[i] !== "") {
+//             result = true
+//         } else {
+//             result = false
+//         }
+//     }
 
-    return result;
-}
+//     return result;
+// }
 
 export function inserirDadosNaLista() {
 
     const dados = obterTodoLocalStorage();
-    let dateVerified = null;
+    let dateVerified = true;
     let totalSum = 0;
     let lista = '';
 
     for (let dado in dados) {
 
         // chamada da função
-        dateVerified = verificarData(dados[dado].data)
+        // dateVerified = verificarData(dados[dado].data)
+        
 
         if (dateVerified) {
             lista +=
@@ -129,7 +130,7 @@ export function inserirDadosNaLista() {
 export function filtrarDadosNaLista(month_home, month_end) {
 
     const dados = obterTodoLocalStorage();
-    let dateVerified = null;
+    let dateVerified = true;
     let totalSumFilter = 0;
 
     let lista = '';
@@ -153,7 +154,7 @@ export function filtrarDadosNaLista(month_home, month_end) {
     for (let dado in dados) {
 
         // chamada da função
-        dateVerified = verificarData(dados[dado].data)
+        // dateVerified = verificarData(dados[dado].data)
 
         if (dateVerified) {
 
