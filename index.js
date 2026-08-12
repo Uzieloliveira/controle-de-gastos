@@ -1,6 +1,6 @@
 //Importação das funções
 import { injetarHtml, chamarNovaTela } from "./controllers/screenControl.js";
-import { filtrarDadosNaLista, salvarDados, inserirDadosNaLista, obterTodoLocalStorage } from "./repositories/addExpensesDAO.js";
+import { salvarDados, inserirDadosNaLista, obterTodoLocalStorage } from "./repositories/addExpensesDAO.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -51,41 +51,11 @@ document.addEventListener('submit', (event) => {
             // as variáveis recebem os valores que foram digitados nos campos de entrada de dadas
             const description = document.getElementById('description').value
             const amount = document.getElementById('amount').value;
-            const day = document.getElementById('day').value;
-            const month = document.getElementById('month').value;
-            const year = document.getElementById('year').value;
 
             // chamada da função responsável por guardar os dados no localhost da página
-            salvarDados(description, amount.toString(), day, month, year);
+            salvarDados(description, amount.toString());
 
         }
     }
 })
 
-// captura o valor selecionado no input de opções, esse valor pode ser: (month, year, all) / referente ao tipo de filtro de exibição!
-document.addEventListener('click', (event) => {
-
-    const btn_resultFilter = event.target.closest('button')
-
-    if (btn_resultFilter) {
-
-        // caso o primeiro input do tipo month foi modificado, pega o valor do input e salva na variável de nome 'valueMonth_home'
-        if (btn_resultFilter.matches('#resultFilter')) {
-
-            var valueMonth_home = document.getElementById('inputMonth_home').value
-            var valueMonth_end = document.getElementById('inputMonth_end').value
-
-            if (valueMonth_home !== '' && valueMonth_end !== '') {
-
-                // a função que insere os dados na lista é chamada e recebe os valores dos inputs do tipo month, como parâmetros!
-                filtrarDadosNaLista(valueMonth_home, valueMonth_end)
-
-            } else {
-                console.error("dados de entrada não foram encontrados!")
-            }
-
-        }
-
-    }
-
-})

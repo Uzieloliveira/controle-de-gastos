@@ -74,37 +74,6 @@
     text-align: center;
 }
 
-.inputDueDate {
-    flex-direction: column;
-    align-items: normal;
-    height: 100%;
-    min-height: 20px;
-}
-
-.inputDueDate #day_Month_Year {
-    height: 100%;
-    padding: 10px 10%;
-    border: solid 1px #494949;
-    min-height: 50px;
-}
-
-.inputDueDate #day_Month_Year input {
-    border-radius: 0.5rem;
-
-    text-align: center;
-}
-
-.inputDueDate #day {
-    width: 25%;
-}
-
-.inputDueDate #month {
-    width: 25%;
-}
-
-.inputDueDate #year {
-    width: 35%;
-}
 
 .buttonSubmit {
     margin-top: 20%;
@@ -126,7 +95,7 @@
 /* Estilo para a tabela que mostra a lista de despesas*/
 /* Container que limita a altura da tabela e cria a rolagem */
 .table-container {
-    height: 50vh;
+    height: 79vh;
     overflow-y: auto;
     /* Cria a barra de rolagem vertical apenas na tabela */
     overflow-x: auto;
@@ -152,60 +121,13 @@
 
 /* Espaçamento interno das células */
 #list-expenses th,
-#list-expenses td {
+#list-expenses td{
     padding: 1rem 0.1rem;
     text-align: center;
 }
 
 #list-expenses #list-content #table_row {
     background-color: #333232;
-}
-
-.filter .month{
-    font-size: 1rem;
-    border: solid 2px #666666;
-    border-radius: 10px;
-}
-
-#filterInputs{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    flex-direction: column;
-    border: solid 0.5px #666666;
-    border-radius: 10px;
-}
-
-#filterInputs .inputs{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-
-}
-
-#inputMonth_home,
-#inputMonth_end{
-    width: 80%;
-    height: 6vh;
-    border-radius: 10px;
-    border-style: none;
-    text-align: center;
-    padding: 5px;
-    font-size: 1rem;
-}
-
-#filterInputs button{
-    width: 80%; 
-    height: 5vh;
-    background-color: var(---theme-color); 
-    color: rgb(229, 233, 230);
-    border-radius: 50px;
-    margin-top: 10px;
-    padding: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    border-style: none;
+    margin-right: 10px;
+    border: solid 2px #4b4949;
 }
