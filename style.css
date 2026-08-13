@@ -115,24 +115,3 @@ h1{
     flex-direction: column;
     color: white;
 }
-
-/* estilo para a barra que mostra as informações de valor e tipo de despesas */
-#displayInformations{
-    height: 5vh;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-}
-
-#total_Sum{
-    height: 100%;
-    width: 100%;
-    background-color: var(---theme-color);
-    background: var(---background-color-gradient);
-    display: flex;
-    align-items: center;
-    padding-left: 3vw;
-    font-family: var(---font-style-title);
-    color: #000200;
-    font-weight: 600;
-}

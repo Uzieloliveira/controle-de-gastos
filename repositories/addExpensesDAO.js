@@ -1,7 +1,8 @@
-// Função responsável por receber os dados de cadastro de uma nova desepesa e enviar para o banco de dados
-export function salvarDados(desc, amount) {
 
-    const datas = [desc, amount]
+// Função responsável por receber os dados de cadastro de uma nova desepesa e enviar para o banco de dados
+export function salvarDados(desc, amount, month) {
+
+    const datas = [desc, amount, month]
 
     let is_True;
 
@@ -22,10 +23,19 @@ export function salvarDados(desc, amount) {
 
         let expenses = {
             descricao: desc,
-            valor: amount
+            valor: amount,
+            mes: month
         };
+        try {
+            localStorage.setItem(Date.now(), JSON.stringify(expenses))
+            const msg = 'Despesa cadastrada com sucesso!';
 
-        localStorage.setItem(Date.now(), JSON.stringify(expenses))
+            alert(msg)
+
+        } catch {
+            console.error(Error);
+            alert(Error)
+        }
     } else {
         console.log('erro ao salvar dados, todos os campos devem estar preenchidos')
     }
@@ -90,5 +100,45 @@ export function inserirDadosNaLista() {
         })
 }
 
+export function filtrarDadosNaLista(month) {
 
+    const dados = obterTodoLocalStorage();
+    let totalSum = 0;
+    let lista = '';
+
+    for (let dado in dados) {
+
+        if (dados[dado].mes === month) {
+            lista +=
+                `<tr id = "table_row">
+            <td style= "color: var(---theme-color);">${dados[dado].descricao}</td>
+            <td style= ""><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
+            </tr>`
+
+            // faz a soma de todos os valores dos resultados armazenados
+            totalSum += Number(dados[dado].valor)
+
+        }
+
+    }
+
+    fetch("./Views/listScreen").then(response => {
+        if (!response.ok) {
+            // se o arquivo não existir ou der erro, avisa no console
+            throw new Error("Erro ao carregar a tela: " + response.statusText);
+        }
+        return response.text();
+    })
+        .then(html => {
+            const tabela = document.querySelector('tbody');
+            if (tabela) {
+                tabela.innerHTML = lista;
+            }
+            const informacoes = document.querySelector("#displayInformations");
+
+            if (informacoes) {
+                informacoes.innerHTML = ` <div id="total_Sum"><p>Valor total:</p>&nbsp<p>${totalSum} R$</p></div>`
+            }
+        })
+}
 

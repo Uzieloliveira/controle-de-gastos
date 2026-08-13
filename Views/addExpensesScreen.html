@@ -1,6 +1,6 @@
 <div id="add-expenses" class="screenStyle">
     <h1>Adicionar despesa</h1>
-    <form>
+    <form id="expensesForm">
         <div class="inputType">
             <p>Tipo de despesa</p>
             <input id="description" type="text" required>
@@ -8,7 +8,11 @@
 
         <div class="inputAmount">
             <p>Valor</p>
-            <input id="amount" type="text" required>
+            <input id="amount" type="number" required>
+        </div>
+          <div class="inputMonth">
+            <p>Mês</p>
+            <input id="month" type="month" required>
         </div>
 
         <div class="buttonSubmit">

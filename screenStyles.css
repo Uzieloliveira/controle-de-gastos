@@ -25,14 +25,6 @@
     margin-top: 20px;
 }
 
-.search .filter {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-
-    font-family: var(---font-style-title);
-}
-
 
 /* estilo para tela de cadastro de despesas */
 #add-expenses {
@@ -46,6 +38,8 @@
     padding: 10% 20px;
     display: flex;
     flex-direction: column;
+    gap: 2vh;
+
 }
 
 #add-expenses form div {
@@ -53,16 +47,13 @@
     height: 10%;
     font-size: 1.3rem;
     font-family: var(---font-style-title);
-    justify-content: space-between;
 }
 
-#add-expenses form .inputType p,
-#add-expenses form .inputAmount p {
+#add-expenses form p {
     width: 9rem;
 }
 
-#add-expenses form .inputType input,
-#add-expenses form .inputAmount input {
+#add-expenses form input {
     height: 80%;
     width: 100%;
     min-width: 220px;
@@ -86,7 +77,7 @@
     border-radius: 1rem;
     border-style: none;
 
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: rgb(4, 63, 43);
     background-color: var(---theme-color);
     cursor: pointer;
@@ -121,13 +112,75 @@
 
 /* Espaçamento interno das células */
 #list-expenses th,
-#list-expenses td{
+#list-expenses td {
     padding: 1rem 0.1rem;
     text-align: center;
+
 }
 
 #list-expenses #list-content #table_row {
     background-color: #333232;
     margin-right: 10px;
     border: solid 2px #4b4949;
+}
+
+/* estilo para a barra que mostra as informações de valor e tipo de despesas */
+#displayInformations {
+    height: 5vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#total_Sum {
+    height: 100%;
+    width: 100%;
+    background-color: var(---theme-color);
+    background: var(---background-color-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 3vw;
+    font-family: var(---font-style-title);
+    color: #ffffff;
+}
+
+.selectMonth {
+    padding-left: 5vw;
+}
+
+.selectMonth p,
+.selectMonth input {
+    font-family: var(---font-style-title);
+    font-size: 1.1rem;
+}
+
+.selectMonth div {
+    height: 6vh;
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.selectMonth input,
+.selectMonth button {
+    text-align: center;
+    height: 100%;
+    border-radius: 50px;
+    border-style: none;
+    padding: 10px;
+}
+
+.selectMonth button {
+    width: 25%;
+    background: var(---theme-color);
+    cursor: pointer;
+}
+
+.selectMonth button:hover {
+    background: #73e7b1;
+}
+
+.selectMonth i {
+    font-size: 1.2rem;
 }

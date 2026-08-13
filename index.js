@@ -1,6 +1,6 @@
 //Importação das funções
 import { injetarHtml, chamarNovaTela } from "./controllers/screenControl.js";
-import { salvarDados, inserirDadosNaLista, obterTodoLocalStorage } from "./repositories/addExpensesDAO.js";
+import { salvarDados, inserirDadosNaLista, filtrarDadosNaLista } from "./repositories/addExpensesDAO.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -51,11 +51,30 @@ document.addEventListener('submit', (event) => {
             // as variáveis recebem os valores que foram digitados nos campos de entrada de dadas
             const description = document.getElementById('description').value
             const amount = document.getElementById('amount').value;
+            const mes = document.getElementById('month').value;
+            const form = document.getElementById('expensesForm')
 
             // chamada da função responsável por guardar os dados no localhost da página
-            salvarDados(description, amount.toString());
+            salvarDados(description, amount.toString(), mes);
 
+            //limpa os campos de input para que seja possível adicionar novos dados
+            form.reset()
         }
     }
 })
 
+
+
+document.addEventListener('click', (event) => {
+
+    const btnMonth = event.target.closest('button')
+
+    if (btnMonth) {
+        if (btnMonth.matches('#searchResult')) {
+
+            const inputMont = document.getElementById('inputMonth').value
+
+            filtrarDadosNaLista(inputMont)
+        }
+    }
+})
