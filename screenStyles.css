@@ -3,9 +3,9 @@
     flex-direction: column;
     height: 100vh;
     width: 100%;
-    overflow: hidden;
-    /* Impede que a página inteira role */
     box-sizing: border-box;
+    /* Impede que a página inteira role */
+    overflow: hidden;
 }
 
 #list h1,
@@ -86,13 +86,13 @@
 /* Estilo para a tabela que mostra a lista de despesas*/
 /* Container que limita a altura da tabela e cria a rolagem */
 .table-container {
-    height: 79vh;
-    overflow-y: auto;
-    /* Cria a barra de rolagem vertical apenas na tabela */
-    overflow-x: auto;
+    height: 70vh;
     /* Evita quebras em telas menores */
     width: 100%;
     margin-top: 10px;
+    overflow-y: auto;
+    /* Cria a barra de rolagem vertical apenas na tabela */
+    overflow-x: auto;
 }
 
 /* Garante que a tabela ocupe a largura do container */
@@ -155,7 +155,7 @@
     font-size: 1.1rem;
 }
 
-.selectMonth div {
+.selectMonth form {
     height: 6vh;
     width: 320px;
     display: flex;

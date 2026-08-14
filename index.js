@@ -74,7 +74,10 @@ document.addEventListener('click', (event) => {
 
             const inputMont = document.getElementById('inputMonth').value
 
-            filtrarDadosNaLista(inputMont)
+            if (inputMont !== "") {
+                filtrarDadosNaLista(inputMont)
+            }
+
         }
     }
 })

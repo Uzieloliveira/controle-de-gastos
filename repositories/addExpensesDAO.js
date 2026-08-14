@@ -61,23 +61,45 @@ export function obterTodoLocalStorage() {
     return dados;
 }
 
+//recebe um objeto do tipo JSON e verifica se os dados recebidos são válidos
+function verificaDados(listData) {
+
+    var result = null;
+
+        if (listData.descricao !== undefined && listData.valor !== undefined && listData.mes !== undefined) {
+            result = true;
+        } else {
+            result = false;
+        }
+    //retorna True or False
+    return result;
+}
+
 export function inserirDadosNaLista() {
 
+    //adiciona os dados em uma constante
     const dados = obterTodoLocalStorage();
     let totalSum = 0;
     let lista = '';
 
     for (let dado in dados) {
 
-        lista +=
-            `<tr id = "table_row">
+        //constante usada para fazer a verificação da validade dos dados
+        const dataVerify = verificaDados(dados[dado]);
+
+        if (dataVerify) {
+
+            //insere na tela, uma lista de todos os dados armazenados no localStorage
+            lista +=
+                `<tr id = "table_row">
             <td style= "color: var(---theme-color);">${dados[dado].descricao}</td>
             <td style= ""><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
             </tr>`
 
-        // faz a soma de todos os valores dos resultados armazenados
-        totalSum += Number(dados[dado].valor)
+            // faz a soma de todos os valores dos resultados armazenados
+            totalSum += Number(dados[dado].valor)
 
+        }
     }
 
     fetch("./Views/listScreen").then(response => {

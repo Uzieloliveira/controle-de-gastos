@@ -8,8 +8,11 @@
       <p>Escolher mês:</p>
 
       <div>
-        <input type="month" id="inputMonth">
-        <button id="searchResult"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <form>
+          <input type="month" id="inputMonth" required>
+          <button id="searchResult" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+
       </div>
     </div>
 
@@ -20,8 +23,8 @@
             <th>Tipo de despesa</th>
             <th>Valor</th>
           </tr>
-
         </thead>
+
         <tbody id="list-content">
 
         </tbody>
