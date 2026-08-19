@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // função que injeta o conteúdo no DOM
     injetarHtml('Views/mainMenu', 'content')
 
+    setTimeout(()=> {
+        const intro = document.getElementById('intro')
+
+        intro.classList.remove('active');
+        intro.classList.add('noActive');
+        intro.style = "z-index: 0;"
+
+    }, 3000)
 })
 
 // identifica qual ícone do menu foi clicado e dispara um evendo chamando uma nova tela correspondente ao ícone
@@ -39,14 +47,14 @@ document.addEventListener('click', (event) => {
 document.addEventListener('submit', (event) => {
 
     // identifica o evento de submit do botão clicado
-    const btn_menu = event.submitter;
+    const btn_add = event.submitter;
 
     event.preventDefault()
 
-    if (btn_menu) {
+    if (btn_add) {
 
         // verifica se o botão clicado possui uma classe com o nome "submit"
-        if (btn_menu.matches('.submit')) {
+        if (btn_add.matches('.submit')) {
 
             // as variáveis recebem os valores que foram digitados nos campos de entrada de dadas
             const description = document.getElementById('description').value
@@ -63,11 +71,17 @@ document.addEventListener('submit', (event) => {
     }
 })
 
-
+function voltarTelaInicio() {
+    injetarHtml('Views/mainMenu', 'content');
+    chamarNovaTela('mainMenu');
+}
 
 document.addEventListener('click', (event) => {
 
     const btnMonth = event.target.closest('button')
+    const btnBack = event.target.closest('button')
+    const btnArrowBack = event.target.closest('i')
+
 
     if (btnMonth) {
         if (btnMonth.matches('#searchResult')) {
@@ -78,6 +92,18 @@ document.addEventListener('click', (event) => {
                 filtrarDadosNaLista(inputMont)
             }
 
+        }
+    }
+
+    if (btnBack) {
+        if (btnBack.matches('#btnBack')) {
+            voltarTelaInicio()
+        }
+    }
+
+    if (btnArrowBack) {
+        if (btnArrowBack.matches('#arrowBack')) {
+            voltarTelaInicio()
         }
     }
 })

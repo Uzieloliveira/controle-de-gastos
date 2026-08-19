@@ -8,15 +8,35 @@
 
         <div class="inputAmount">
             <p>Valor</p>
-            <input id="amount" type="number" required>
+            <input id="amount" type="number" step="any" required>
         </div>
-          <div class="inputMonth">
+
+        <div class="inputMonth">
             <p>Mês</p>
             <input id="month" type="month" required>
         </div>
 
+        <div class="options">
+            <fieldset>
+                <legend>Tipo de despesa</legend>
+
+                    <div>
+                        <input type="radio" id="fixa" name="despesa" value="fixa" checked>
+                        <label for="fixa">fixa</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="variavel" name="despesa" value="variavel">
+                        <label for="variavel">variável</label>
+                    </div>
+
+            </fieldset>
+        </div>
+
         <div class="buttonSubmit">
             <button class="submit" type="submit">Adicionar</button>
+
+            <button class="btnBack" id="btnBack" type="button">Voltar</button>
         </div>
     </form>
 </div>

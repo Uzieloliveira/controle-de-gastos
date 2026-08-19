@@ -52,7 +52,7 @@
 
 /* título principal do sistema */
 h1{
-    height: 15%;
+    height: 20%;
     max-height: 200px;
 
     display: flex;
@@ -114,4 +114,21 @@ h1{
 
     flex-direction: column;
     color: white;
+}
+
+#intro{
+    height: 100vh;
+    width: 100%;
+    background-color: #000000;
+    transition: ease-in-out .3s;
+    z-index: 1;
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#intro img{
+    height: 45vh;
 }
