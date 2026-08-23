@@ -1,8 +1,8 @@
 
 // Função responsável por receber os dados de cadastro de uma nova desepesa e enviar para o banco de dados
-export function salvarDados(desc, amount, month) {
+export function salvarDados(desc, amount, month, type, situation) {
 
-    const datas = [desc, amount, month]
+    const datas = [desc, amount, month, type, situation]
 
     let is_True;
 
@@ -24,7 +24,9 @@ export function salvarDados(desc, amount, month) {
         let expenses = {
             descricao: desc,
             valor: amount,
-            mes: month
+            mes: month,
+            tipo: type,
+            situacao: situation
         };
         try {
             localStorage.setItem(Date.now(), JSON.stringify(expenses))
@@ -37,7 +39,7 @@ export function salvarDados(desc, amount, month) {
             alert(Error)
         }
     } else {
-        console.log('erro ao salvar dados, todos os campos devem estar preenchidos')
+        alert('erro ao salvar dados, todos os campos devem estar preenchidos')
     }
 }
 
@@ -66,13 +68,24 @@ function verificaDados(listData) {
 
     var result = null;
 
-        if (listData.descricao !== undefined && listData.valor !== undefined && listData.mes !== undefined) {
-            result = true;
-        } else {
-            result = false;
-        }
+    if (listData.descricao !== undefined && listData.valor !== undefined && listData.mes !== undefined) {
+        result = true;
+    } else {
+        result = false;
+    }
     //retorna True or False
     return result;
+}
+
+// define uma cor para cada tipo de valor da coluna 'situação'(pago, a pagar, agendado),apresentada na lista de despesas!
+function definirCor(dado) {
+    if (dado === "pago") {
+        return "#5fff4a";
+    } else if (dado === "a pagar") {
+        return "#ff3f3f";
+    } else if (dado === "agendado") {
+        return "#56c9ff";
+    }
 }
 
 export function inserirDadosNaLista() {
@@ -89,11 +102,15 @@ export function inserirDadosNaLista() {
 
         if (dataVerify) {
 
+            let color = definirCor(dados[dado].situacao);
+
             //insere na tela, uma lista de todos os dados armazenados no localStorage
             lista +=
                 `<tr id = "table_row">
             <td style= "color: var(---theme-color);">${dados[dado].descricao}</td>
-            <td style= ""><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
+            <td><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
+            <td>${dados[dado].tipo}</td>
+            <td style= "color: ${color}">${dados[dado].situacao} </td>
             </tr>`
 
             // faz a soma de todos os valores dos resultados armazenados
@@ -131,10 +148,14 @@ export function filtrarDadosNaLista(month) {
     for (let dado in dados) {
 
         if (dados[dado].mes === month) {
+
+            let color = definirCor(dados[dado].situacao);
             lista +=
                 `<tr id = "table_row">
             <td style= "color: var(---theme-color);">${dados[dado].descricao}</td>
-            <td style= ""><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
+            <td><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
+            <td>${dados[dado].tipo}</td>
+            <td style= "color: ${color}">${dados[dado].situacao}</td>
             </tr>`
 
             // faz a soma de todos os valores dos resultados armazenados

@@ -21,16 +21,22 @@
                 <legend>Tipo de despesa</legend>
 
                     <div>
-                        <input type="radio" id="fixa" name="despesa" value="fixa" checked>
-                        <label for="fixa">fixa</label>
+                        <input type="radio" id="repetition" name="expense" value="repetição" checked>
+                        <label for="repetition">repetição</label>
                     </div>
 
                     <div>
-                        <input type="radio" id="variavel" name="despesa" value="variavel">
-                        <label for="variavel">variável</label>
+                        <input type="radio" id="variable" name="expense" value="variavel">
+                        <label for="variable">variável</label>
                     </div>
 
             </fieldset>
+        </div>
+
+        <div id="expenses_situation">
+            <button class="situation" id="paid" value="pago">pago</button>
+            <button class="situation" id="payable"  value="a pagar">a pagar</button>
+            <button class="situation" id="scheduled"  value="agendado">agendado</button>
         </div>
 
         <div class="buttonSubmit">

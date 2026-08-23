@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // função que injeta o conteúdo no DOM
     injetarHtml('Views/mainMenu', 'content')
 
-    setTimeout(()=> {
+    setTimeout(() => {
         const intro = document.getElementById('intro')
 
         intro.classList.remove('active');
@@ -17,31 +17,94 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000)
 })
 
-// identifica qual ícone do menu foi clicado e dispara um evendo chamando uma nova tela correspondente ao ícone
+//Ouvinte de click responsável por identificar qual icone ou botão foi clicado!
 document.addEventListener('click', (event) => {
-    const btn_menu = event.target.closest('li');
 
-    if (btn_menu) {
+    const pattern = event.target.closest('button')
+    const btnMonth = pattern
+    const btnBack = pattern
+    const btnSituation = pattern
+    const btnArrowBack = event.target.closest('i')
+    const btnMenu = event.target.closest('li');
 
-        if (btn_menu.matches('.controlPanelScreen, .listScreen, .addExpensesScreen, .addIncomeScreen')) {
 
-            const screen = btn_menu.getAttribute('data-screen')
+    // identifica qual ícone do menu foi clicado e dispara um evendo chamando uma nova tela correspondente ao ícone
+    if (btnMenu) {
+
+        if (btnMenu.matches('.controlPanelScreen, .listScreen, .addExpensesScreen, .addIncomeScreen')) {
+
+            const screen = btnMenu.getAttribute('data-screen')
 
             //função responsável por encontrar a tela correspondente ao icone clicado
             chamarNovaTela(screen);
 
             if (screen) {
                 // Caso a tela chamada for a da lista de despesas, adiciona os itens na lista antes de mostrá-la
-                if (btn_menu.matches('.listScreen')) {
+                if (btnMenu.matches('.listScreen')) {
                     //função responsável por carregar todos os dados do localStorage, na lista de despesas
                     inserirDadosNaLista();
 
                 }
+
             }
+        }
+    } else if (btnMonth) {
+
+        if (btnMonth.matches('#searchResult')) {
+
+            const inputMont = document.getElementById('inputMonth').value
+
+            if (inputMont !== "") {
+                filtrarDadosNaLista(inputMont)
+            }
+
+        }
+
+    }
+
+
+    if (btnSituation) {
+        const paid = document.getElementById("paid")
+        const payable = document.getElementById("payable")
+        const scheduled = document.getElementById("scheduled")
+
+        if (btnSituation.matches('#paid')) {
+
+            paid.classList.add('btnClicked')
+            payable.classList.remove('btnClicked')
+            scheduled.classList.remove('btnClicked')
+
+        } else if (btnSituation.matches('#payable')) {
+
+            payable.classList.add('btnClicked')
+            paid.classList.remove('btnClicked')
+            scheduled.classList.remove('btnClicked')
+
+        } else if (btnSituation.matches('#scheduled')) {
+
+            scheduled.classList.add('btnClicked')
+            payable.classList.remove('btnClicked')
+            paid.classList.remove('btnClicked')
+
+        }
+    }
+
+    if (btnBack) {
+
+        if (btnBack.matches('#btnBack')) {
+            voltarTelaInicio()
+        }
+
+    } else if (btnArrowBack) {
+
+        if (btnArrowBack.matches('#arrowBack')) {
+            voltarTelaInicio()
         }
     }
 
 })
+
+
 
 // Captura dos valores dos inputs da tela de cadatro de despesas
 document.addEventListener('submit', (event) => {
@@ -59,11 +122,15 @@ document.addEventListener('submit', (event) => {
             // as variáveis recebem os valores que foram digitados nos campos de entrada de dadas
             const description = document.getElementById('description').value
             const amount = document.getElementById('amount').value;
-            const mes = document.getElementById('month').value;
-            const form = document.getElementById('expensesForm')
+            const month = document.getElementById('month').value;
+            const type = document.querySelector('input[name="expense"]:checked')?.value;
+            const situation = document.querySelector('.btnClicked').value;
+            const form = document.getElementById('expensesForm');
+
+            alert(situation)
 
             // chamada da função responsável por guardar os dados no localhost da página
-            salvarDados(description, amount.toString(), mes);
+            salvarDados(description, amount.toString(), month, type, situation);
 
             //limpa os campos de input para que seja possível adicionar novos dados
             form.reset()
@@ -76,34 +143,3 @@ function voltarTelaInicio() {
     chamarNovaTela('mainMenu');
 }
 
-document.addEventListener('click', (event) => {
-
-    const btnMonth = event.target.closest('button')
-    const btnBack = event.target.closest('button')
-    const btnArrowBack = event.target.closest('i')
-
-
-    if (btnMonth) {
-        if (btnMonth.matches('#searchResult')) {
-
-            const inputMont = document.getElementById('inputMonth').value
-
-            if (inputMont !== "") {
-                filtrarDadosNaLista(inputMont)
-            }
-
-        }
-    }
-
-    if (btnBack) {
-        if (btnBack.matches('#btnBack')) {
-            voltarTelaInicio()
-        }
-    }
-
-    if (btnArrowBack) {
-        if (btnArrowBack.matches('#arrowBack')) {
-            voltarTelaInicio()
-        }
-    }
-})

@@ -43,7 +43,7 @@
 
 #add-expenses form div {
     display: flex;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-family: var(---font-style-title);
 }
 
@@ -51,7 +51,9 @@
     width: 9rem;
 }
 
-#add-expenses form input {
+#description,
+#amount,
+#month {
     height: 7vh;
     width: 100%;
     min-width: 220px;
@@ -72,7 +74,7 @@
     justify-content: space-between;
 }
 
-.buttonSubmit #btnBack{
+.buttonSubmit #btnBack {
     background-color: rgb(18, 164, 231);
     color: rgb(2, 47, 68);
 }
@@ -84,7 +86,7 @@
     border-radius: 1rem;
     border-style: none;
 
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: rgb(4, 63, 43);
     background-color: var(---theme-color);
     cursor: pointer;
@@ -159,7 +161,7 @@
 .selectMonth p,
 .selectMonth input {
     font-family: var(---font-style-title);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .selectMonth form {
@@ -192,16 +194,57 @@
     font-size: 1.2rem;
 }
 
-.options fieldset{
-    border: 2px solid #333; 
-    padding: 15px; 
+.options fieldset {
+    border: 2px solid #333;
+    padding: 15px;
     border-radius: 8px;
     width: 100%;
-    
+
 }
 
-.options fieldset div input[type="radio"]{
-    width: 0;
-    height: 0;
+.options fieldset div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.options fieldset div input[type="radio"] {
+    height: 5vh;
+    width: 5vw;
     background-color: #121212;
+}
+
+#expenses_situation {
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+}
+
+#expenses_situation button {
+    min-width: 100px;
+    border-radius: 50px;
+    border-style: none;
+    cursor: pointer;
+    font-size: .9rem;
+}
+
+#expenses_situation button:nth-child(1) {
+    background-color: #5fff4a;
+    color: #024928;
+}
+
+#expenses_situation button:nth-child(2) {
+    background-color: #ff3f3f;
+    color: #300101;
+}
+
+#expenses_situation button:nth-child(3) {
+    background-color: #56c9ff;
+    color: #021e49;
+}
+
+#expenses_situation .btnClicked{
+    opacity: .5;
+    border: solid 2px #030303;
 }
