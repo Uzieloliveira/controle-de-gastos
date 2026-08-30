@@ -68,7 +68,7 @@
 
 .buttonSubmit {
     height: 20vh;
-    margin-top: 20%;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -214,32 +214,37 @@
     background-color: #121212;
 }
 
-#expenses_situation {
-    height: 7vh;
+#expenses_situation fieldset{
+    height: 10vh;
+    min-height: 70px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     max-width: 500px;
+    border: none;
 }
 
 #expenses_situation button {
     min-width: 100px;
+    width: 30%;
     border-radius: 50px;
     border-style: none;
     cursor: pointer;
     font-size: .9rem;
+    margin-top: 1rem;
 }
 
-#expenses_situation button:nth-child(1) {
+#expenses_situation button:nth-child(2) {
     background-color: #5fff4a;
     color: #024928;
 }
 
-#expenses_situation button:nth-child(2) {
+#expenses_situation button:nth-child(3) {
     background-color: #ff3f3f;
     color: #300101;
 }
 
-#expenses_situation button:nth-child(3) {
+#expenses_situation button:nth-child(4) {
     background-color: #56c9ff;
     color: #021e49;
 }

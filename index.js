@@ -124,16 +124,20 @@ document.addEventListener('submit', (event) => {
             const amount = document.getElementById('amount').value;
             const month = document.getElementById('month').value;
             const type = document.querySelector('input[name="expense"]:checked')?.value;
-            const situation = document.querySelector('.btnClicked').value;
             const form = document.getElementById('expensesForm');
+            const situation = document.querySelector('.btnClicked');
+            const situationVerify = situation !== null ? true : false;
 
-            alert(situation)
+            if (situationVerify) {
+                // chamada da função responsável por guardar os dados no localhost da página
+                salvarDados(description, amount.toString(), month, type, situation.value);
 
-            // chamada da função responsável por guardar os dados no localhost da página
-            salvarDados(description, amount.toString(), month, type, situation);
+                //limpa os campos de input para que seja possível adicionar novos dados
+                form.reset()
+            } else {
+                alert("Favor, selecione uma opção de situação!");
+            }
 
-            //limpa os campos de input para que seja possível adicionar novos dados
-            form.reset()
         }
     }
 })

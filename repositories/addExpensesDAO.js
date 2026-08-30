@@ -68,7 +68,7 @@ function verificaDados(listData) {
 
     var result = null;
 
-    if (listData.descricao !== undefined && listData.valor !== undefined && listData.mes !== undefined) {
+    if (listData.descricao !== undefined && listData.valor !== undefined && listData.mes !== undefined && listData.tipo !== undefined && listData.situacao !== undefined) {
         result = true;
     } else {
         result = false;
@@ -107,8 +107,8 @@ export function inserirDadosNaLista() {
             //insere na tela, uma lista de todos os dados armazenados no localStorage
             lista +=
                 `<tr id = "table_row">
-            <td style= "color: var(---theme-color);">${dados[dado].descricao}</td>
-            <td><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
+            <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${dados[dado].descricao}</td>
+            <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
             <td>${dados[dado].tipo}</td>
             <td style= "color: ${color}">${dados[dado].situacao} </td>
             </tr>`
@@ -134,7 +134,7 @@ export function inserirDadosNaLista() {
             const informacoes = document.querySelector("#displayInformations");
 
             if (informacoes) {
-                informacoes.innerHTML = ` <div id="total_Sum"><p>Valor total:</p>&nbsp<p>${totalSum} R$</p></div>`
+                informacoes.innerHTML = ` <div id="total_Sum"><p>Valor total:</p>&nbsp<p>R$ ${totalSum} </p></div>`
             }
         })
 }
@@ -153,7 +153,7 @@ export function filtrarDadosNaLista(month) {
             lista +=
                 `<tr id = "table_row">
             <td style= "color: var(---theme-color);">${dados[dado].descricao}</td>
-            <td><span style= "color: var(---theme-color);">${dados[dado].valor}</span>&nbsp&nbspR$</td>
+            <td>R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
             <td>${dados[dado].tipo}</td>
             <td style= "color: ${color}">${dados[dado].situacao}</td>
             </tr>`
