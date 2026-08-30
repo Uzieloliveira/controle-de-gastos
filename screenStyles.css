@@ -9,7 +9,7 @@
 }
 
 #list h1,
-#add-expenses h1 {
+#add-expenses h1, #add-income h1{
     width: 100%;
     height: 12%;
     min-height: 80px;
@@ -32,7 +32,7 @@
     width: 100%;
 }
 
-#add-expenses form {
+#add-expenses form, #add-income form {
     height: 85%;
     padding: 10% 20px;
     display: flex;
@@ -41,19 +41,23 @@
 
 }
 
-#add-expenses form div {
+#add-expenses form div, #add-income form div {
     display: flex;
     font-size: 1.2rem;
     font-family: var(---font-style-title);
 }
 
-#add-expenses form p {
+#add-expenses form label, #add-income form label {
     width: 9rem;
+}
+
+#add-income form{
+    margin-top: 10vh;
 }
 
 #description,
 #amount,
-#month {
+#month, #income, #month-income {
     height: 7vh;
     width: 100%;
     min-width: 220px;
@@ -95,7 +99,7 @@
 /* Estilo para a tabela que mostra a lista de despesas*/
 /* Container que limita a altura da tabela e cria a rolagem */
 .table-container {
-    height: 70vh;
+    height: 65vh;
     /* Evita quebras em telas menores */
     width: 100%;
     margin-top: 10px;
@@ -135,23 +139,23 @@
 
 /* estilo para a barra que mostra as informações de valor e tipo de despesas */
 #displayInformations {
-    height: 5vh;
+    height: 10vh;
     width: 100%;
     position: absolute;
     bottom: 0;
+    background-color: #3d3d3d67;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 
-#total_Sum {
-    height: 100%;
-    width: 100%;
-    background-color: var(---theme-color);
-    background: var(---background-color-gradient);
+#total_Sum, #total_SumPayable, #total_Balance {
     display: flex;
-    align-items: center;
-    justify-content: end;
-    padding-right: 3vw;
+    font-size: 0.9rem;
     font-family: var(---font-style-title);
-    color: #ffffff;
+    font-weight: bolder;
 }
 
 .selectMonth {

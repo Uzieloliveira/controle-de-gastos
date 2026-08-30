@@ -1,6 +1,6 @@
 //Importação das funções
 import { injetarHtml, chamarNovaTela } from "./controllers/screenControl.js";
-import { salvarDados, inserirDadosNaLista, filtrarDadosNaLista } from "./repositories/addExpensesDAO.js";
+import { salvarDados, inserirDadosNaLista, filtrarDadosNaLista, adicionarReceita } from "./repositories/addExpensesDAO.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -105,7 +105,6 @@ document.addEventListener('click', (event) => {
 })
 
 
-
 // Captura dos valores dos inputs da tela de cadatro de despesas
 document.addEventListener('submit', (event) => {
 
@@ -117,7 +116,7 @@ document.addEventListener('submit', (event) => {
     if (btn_add) {
 
         // verifica se o botão clicado possui uma classe com o nome "submit"
-        if (btn_add.matches('.submit')) {
+        if (btn_add.matches('.submit-expense')) {
 
             // as variáveis recebem os valores que foram digitados nos campos de entrada de dadas
             const description = document.getElementById('description').value
@@ -126,9 +125,9 @@ document.addEventListener('submit', (event) => {
             const type = document.querySelector('input[name="expense"]:checked')?.value;
             const form = document.getElementById('expensesForm');
             const situation = document.querySelector('.btnClicked');
-            const situationVerify = situation !== null ? true : false;
 
-            if (situationVerify) {
+            // Verifica se foi selecionado alguma das opções de "situação" (pago, a pagar, agendado)!
+            if (situation !== null) {
                 // chamada da função responsável por guardar os dados no localhost da página
                 salvarDados(description, amount.toString(), month, type, situation.value);
 
@@ -137,6 +136,15 @@ document.addEventListener('submit', (event) => {
             } else {
                 alert("Favor, selecione uma opção de situação!");
             }
+
+        } else if (btn_add.matches('.submit-income')) {
+            const income = document.getElementById('income').value
+            const month_income = document.getElementById('month-income').value
+            const form = document.getElementById('incomeForm');
+
+            adicionarReceita(income, month_income);
+            
+            form.reset()
 
         }
     }

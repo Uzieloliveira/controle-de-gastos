@@ -1,4 +1,3 @@
-
 // Função responsável por receber os dados de cadastro de uma nova desepesa e enviar para o banco de dados
 export function salvarDados(desc, amount, month, type, situation) {
 
@@ -41,6 +40,8 @@ export function salvarDados(desc, amount, month, type, situation) {
     } else {
         alert('erro ao salvar dados, todos os campos devem estar preenchidos')
     }
+
+   
 }
 
 export function obterTodoLocalStorage() {
@@ -88,11 +89,23 @@ function definirCor(dado) {
     }
 }
 
+// insere os valores dentro de um texto
+function inserirInfomacaoRodapeLista(totalSum, totalSumPayable, balance){
+    return ` 
+    <div id="total_SumPayable"><p style= "color: #fafafa">Valor total a pagar / agendado:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${totalSumPayable} </p></div>
+
+    <div id="total_Sum"><p style= "color: #fafafa">Valor total:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${totalSum}</p></div>
+
+    <div id="total_Balance"><p style= "color: #fafafa">Saldo atual:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${balance}</p></div>`
+}
+
 export function inserirDadosNaLista() {
 
     //adiciona os dados em uma constante
     const dados = obterTodoLocalStorage();
     let totalSum = 0;
+    let totalSumPayable = 0;
+    let balance = 10000;
     let lista = '';
 
     for (let dado in dados) {
@@ -116,6 +129,10 @@ export function inserirDadosNaLista() {
             // faz a soma de todos os valores dos resultados armazenados
             totalSum += Number(dados[dado].valor)
 
+            if(dados[dado].situacao === "a pagar" || dados[dado].situacao === "agendado"){
+                totalSumPayable += Number(dados[dado].valor)
+            }
+
         }
     }
 
@@ -134,7 +151,8 @@ export function inserirDadosNaLista() {
             const informacoes = document.querySelector("#displayInformations");
 
             if (informacoes) {
-                informacoes.innerHTML = ` <div id="total_Sum"><p>Valor total:</p>&nbsp<p>R$ ${totalSum} </p></div>`
+                
+                informacoes.innerHTML = inserirInfomacaoRodapeLista(totalSum, totalSumPayable, balance);
             }
         })
 }
@@ -143,6 +161,8 @@ export function filtrarDadosNaLista(month) {
 
     const dados = obterTodoLocalStorage();
     let totalSum = 0;
+    let totalSumPayable = 0;
+    let balance = 10000;
     let lista = '';
 
     for (let dado in dados) {
@@ -151,15 +171,20 @@ export function filtrarDadosNaLista(month) {
 
             let color = definirCor(dados[dado].situacao);
             lista +=
-                `<tr id = "table_row">
-            <td style= "color: var(---theme-color);">${dados[dado].descricao}</td>
-            <td>R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
+            `<tr id = "table_row">
+            <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${dados[dado].descricao}</td>
+            <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
             <td>${dados[dado].tipo}</td>
             <td style= "color: ${color}">${dados[dado].situacao}</td>
             </tr>`
 
             // faz a soma de todos os valores dos resultados armazenados
             totalSum += Number(dados[dado].valor)
+
+            // faz a soma de todos os valores de despesas 'a pagar' e 'agendada'
+            if(dados[dado].situacao === "a pagar" || dados[dado].situacao === "agendado"){
+                totalSumPayable += Number(dados[dado].valor)
+            }
 
         }
 
@@ -180,8 +205,14 @@ export function filtrarDadosNaLista(month) {
             const informacoes = document.querySelector("#displayInformations");
 
             if (informacoes) {
-                informacoes.innerHTML = ` <div id="total_Sum"><p>Valor total:</p>&nbsp<p>${totalSum} R$</p></div>`
+
+                // atualiza as informações mostradas no rodapé da página da lista de despesas
+                informacoes.innerHTML = inserirInfomacaoRodapeLista(totalSum, totalSumPayable, balance);
+                
             }
         })
 }
 
+export function adicionarReceita(income, month_income){
+        alert('chegou' + `dados: ${income}, ${month_income}`)
+    }

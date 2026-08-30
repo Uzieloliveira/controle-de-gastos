@@ -2,17 +2,17 @@
     <h1>Adicionar despesa</h1>
     <form id="expensesForm">
         <div class="inputType">
-            <p>Tipo de despesa</p>
+            <label for="description">Tipo de despesa</label>
             <input id="description" type="text" required>
         </div>
 
         <div class="inputAmount">
-            <p>Valor</p>
+            <label for="amount">Valor</label>
             <input id="amount" type="number" step="any" required>
         </div>
 
         <div class="inputMonth">
-            <p>Mês</p>
+            <label for="month">Mês</label>
             <input id="month" type="month" required>
         </div>
 
@@ -43,7 +43,7 @@
         </div>
 
         <div class="buttonSubmit">
-            <button class="submit" type="submit">Adicionar</button>
+            <button class="submit-expense" type="submit">Adicionar</button>
 
             <button class="btnBack" id="btnBack" type="button">Voltar</button>
         </div>
