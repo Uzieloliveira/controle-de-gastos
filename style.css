@@ -1,5 +1,5 @@
 /* formatação do estilo padrão da página */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,29 +7,28 @@
 }
 
 /* estilos padrão */
-:root{
-   
+:root {
+
     ---font-style-title: arial, Helvetica, sans-serif;
-    ---font-color-icons: #06DBFF;
+    /* ---font-color-icons: #06DBFF; */
     ---font-color-title: #FFFFFF;
-    ---background-color-top-bar: radial-gradient(circle, rgb(85, 85, 85) 10%, rgb(0, 0, 0) 99%);
+    ---background-color-top-bar: radial-gradient(circle, rgb(61, 61, 61) 10%, rgba(7, 7, 7, 0.986) 99%);
     ---theme-color: rgb(8, 194, 132);
     ---background-color-gradient: radial-gradient(circle, rgba(8, 194, 132, 1) 21%, rgba(24, 87, 55, 1) 88%);
-   
+
 }
 
-.main-container{
+.main-container {
     position: relative;
     width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color:#262626;
     background: var(---background-color-top-bar);
 }
 
 /* estilo padrão para a tela que está "escondida" */
-.screen{
+.screen {
     position: absolute;
     top: 0;
     left: 0;
@@ -38,76 +37,98 @@
     pointer-events: none;
 }
 
-.noActive{
+.noActive {
     opacity: 0;
     height: 0;
     transition: opacity 0.08s ease-in-out;
 }
 
 /* estilo padrão para a tela que está ativa */
-.active{
+.active {
     opacity: 1;
     pointer-events: auto;
 }
 
 /* título principal do sistema */
-h1{
-    height: 20%;
+#main-title {
+    height: 20vh;
     max-height: 200px;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     text-align: center;
 
-    border-radius: 0 0 10rem 10rem;
+    border-radius: 0 0 2rem 2rem;
     padding: 0 100px 0 100px;
-    box-shadow: 0 4px 4px #6464648f;
+    box-shadow: 0 4px 25px 2px #0707078f;
+    background-color: #000000;
 
-    font-size: 2em;
+    font-size: 0.9em;
     font-family: var(---font-style-title);
     color: var(---font-color-title);
 }
 
+#main-title img {
+    height: 50vh;
+    width: 50vw;
+    min-height: 250px;
+    min-width: 250px;
+
+    position: relative;
+    top: -15px;
+
+    border-radius: 100px;
+
+}
+
+#main-title p {
+    position: relative;
+    top: -9vh;
+    font-size: 1rem;
+    font-weight: 100;
+    color: #b6b9b7;
+}
+
 /* menu principal */
-#main-menu{
+#main-menu {
     height: auto;
     padding: 10%;
+    margin-top: 15vh;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20%;
 
-    color: var(---font-color-icons);
+    color: var(---theme-color);
     font-family: var(---font-style-title);
-}
-
-#main-menu{
     text-align: center;
 }
 
+
 /* formato para icones de imagem */
-#main-menu li img{
+#main-menu li img {
     width: 5rem;
     max-width: 50px;
 }
 
-#main-menu li{
+#main-menu li {
     cursor: pointer;
 }
 
-#copyright{
+#copyright {
     font-size: 0.6rem;
     color: #635B5B;
 
     position: absolute;
     bottom: 50px;
     left: 50%;
-    transform: translate(-50%, -50%);   
+    transform: translate(-50%, -50%);
 }
 
 /* tela do painel de controle */
-.screenStyle{
+.screenStyle {
     display: flex;
     height: 100%;
     width: 100%;
@@ -116,7 +137,7 @@ h1{
     color: white;
 }
 
-#intro{
+#intro {
     height: 100vh;
     width: 100%;
     background-color: #000000;
@@ -129,6 +150,6 @@ h1{
     justify-content: center;
 }
 
-#intro img{
+#intro img {
     height: 45vh;
 }
