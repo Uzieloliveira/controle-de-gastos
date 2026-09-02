@@ -1,3 +1,6 @@
+/* Importação de fontes do goole fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 /* formatação do estilo padrão da página */
 * {
     margin: 0;
@@ -14,7 +17,7 @@
     ---font-color-title: #FFFFFF;
     ---background-color-top-bar: radial-gradient(circle, rgb(61, 61, 61) 10%, rgba(7, 7, 7, 0.986) 99%);
     ---theme-color: rgb(8, 194, 132);
-    ---background-color-gradient: radial-gradient(circle, rgba(8, 194, 132, 1) 21%, rgba(24, 87, 55, 1) 88%);
+    ---background-color-gradient: radial-gradient(circle, rgba(76, 78, 78, 0.925) 21%, rgb(19, 18, 18) 88%);
 
 }
 
@@ -24,7 +27,7 @@
     height: 100vh;
     margin: 0;
     padding: 0;
-    background: var(---background-color-top-bar);
+    background: var(---background-color-gradient);
 }
 
 /* estilo padrão para a tela que está "escondida" */
@@ -51,51 +54,50 @@
 
 /* título principal do sistema */
 #main-title {
-    height: 20vh;
-    max-height: 200px;
+    height: 30vh;
+    max-height: 300px;
+    min-height: 250px;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     text-align: center;
 
     border-radius: 0 0 2rem 2rem;
     padding: 0 100px 0 100px;
-    box-shadow: 0 4px 25px 2px #0707078f;
-    background-color: #000000;
+    box-shadow: 0 4px 25px 10px #1f1b1b;
 
     font-size: 0.9em;
-    font-family: var(---font-style-title);
+     font-family: "DM Sans", sans-serif;
     color: var(---font-color-title);
-}
-
-#main-title img {
-    height: 50vh;
-    width: 50vw;
-    min-height: 250px;
-    min-width: 250px;
-
-    position: relative;
-    top: -15px;
-
-    border-radius: 100px;
-
+    background-color: #000000;
 }
 
 #main-title p {
-    position: relative;
-    top: -9vh;
-    font-size: 1rem;
+    font-size: 1.5em;
     font-weight: 100;
-    color: #b6b9b7;
+    color: #d5d8d6;
+    position: absolute;
+    top: 15px;
+    background-color: #f7faf836;
+    padding: 10px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    z-index: 2;
 }
+
+#main-title img {
+    height: 100%;
+    /* opacity: .2; */
+}
+
 
 /* menu principal */
 #main-menu {
     height: auto;
-    padding: 10%;
-    margin-top: 15vh;
+    padding: 5%;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -142,7 +144,7 @@
     width: 100%;
     background-color: #000000;
     transition: ease-in-out .3s;
-    z-index: 1;
+    z-index: 3;
     position: fixed;
 
     display: flex;
