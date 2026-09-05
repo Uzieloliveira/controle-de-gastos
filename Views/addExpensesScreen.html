@@ -18,11 +18,13 @@
 
         <div class="options">
             <fieldset>
+
                 <legend>Tipo de despesa</legend>
 
                 <div>
-                    <input type="radio" id="repetition" name="expense" value="repetição" checked>
+                    <input type="radio" id="repetition" name="expense" value="repetição" >
                     <label for="repetition">repetição</label>
+                    <span id="dueDateView" style="color: var(---theme-color);"> Dia: --</span>
                 </div>
 
                 <div>
@@ -47,5 +49,17 @@
 
             <button class="btnBack" id="btnBack" type="button">Voltar</button>
         </div>
+
+        <div id="dueDate-container" class="noActive">
+            <div id="dueDate" >
+                <span>Dia do vencimento</span>
+                <input type="number" placeholder="dia" id="day">
+                <div class="btns">
+                    <button id="confirm">confirmar</button>
+                    <button id="close">fechar</button>
+                </div>
+            </div>
+        </div>
+
     </form>
 </div>

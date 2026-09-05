@@ -44,6 +44,7 @@
     opacity: 0;
     height: 0;
     transition: opacity 0.08s ease-in-out;
+    z-index: -2;
 }
 
 /* estilo padrão para a tela que está ativa */
@@ -54,9 +55,9 @@
 
 /* título principal do sistema */
 #main-title {
-    height: 30vh;
+    height: 10vh;
     max-height: 300px;
-    min-height: 250px;
+    min-height: 200px;
     width: 100%;
 
     display: flex;
@@ -67,12 +68,12 @@
 
     border-radius: 0 0 2rem 2rem;
     padding: 0 100px 0 100px;
-    box-shadow: 0 4px 25px 10px #1f1b1b;
+    box-shadow: 0 1px 15px 1px #131212;
 
     font-size: 0.9em;
      font-family: "DM Sans", sans-serif;
     color: var(---font-color-title);
-    background-color: #000000;
+    background-color: var(---background-color-gradient);
 }
 
 #main-title p {

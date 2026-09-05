@@ -1,5 +1,5 @@
 // Função responsável por receber os dados de cadastro de uma nova desepesa e enviar para o banco de dados
-export function salvarDados(desc, amount, month, type, situation) {
+export function salvarDados(desc, amount, month, type, situation, day) {
 
     const datas = [desc, amount, month, type, situation]
 
@@ -8,7 +8,7 @@ export function salvarDados(desc, amount, month, type, situation) {
     for (let i = 0; i < datas.length; i++) {
 
         // validação dos dados
-        if (datas[i] === undefined || datas[i] === null || datas[i] === '') {
+        if (datas[i] == undefined || datas[i] == null || datas[i] === '') {
 
             is_True = false
 
@@ -19,14 +19,28 @@ export function salvarDados(desc, amount, month, type, situation) {
     }
 
     if (is_True) {
+        let expenses = {}
 
-        let expenses = {
-            descricao: desc,
-            valor: amount,
-            mes: month,
-            tipo: type,
-            situacao: situation
-        };
+        // caso a despesa cadastrada seja do tipo repetição, adiciona o dia do vencimento no cadastro
+        if (type === 'variável') {
+            expenses = {
+                descricao: desc,
+                valor: amount,
+                mes: month,
+                tipo: type,
+                situacao: situation
+            };
+        } else if (type === 'repetição') {
+            expenses = {
+                descricao: desc,
+                valor: amount,
+                vencimento: day,
+                mes: month,
+                tipo: type,
+                situacao: situation
+            };
+        }
+
         try {
             localStorage.setItem(Date.now(), JSON.stringify(expenses))
             const msg = 'Despesa cadastrada com sucesso!';
@@ -86,11 +100,21 @@ function definirCor(dado) {
         return "#ff3f3f";
     } else if (dado === "agendado") {
         return "#56c9ff";
+    } 
+    
+    if(dado < 0){
+        return "#ff3f3f";
+    }else{
+        return "rgb(8, 194, 132);"
     }
 }
 
 // insere os valores dentro de um texto
 function inserirInfomacaoRodapeLista(totalSum, totalSumPayable, balance) {
+
+    let sum = balance - totalSumPayable
+    let colorBalance =  definirCor(sum)
+
     return ` 
     <div id="total_SumPayable"><p style= "color: #fafafa">Valor total a pagar / agendado:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${totalSumPayable} </p></div>
 
@@ -98,9 +122,9 @@ function inserirInfomacaoRodapeLista(totalSum, totalSumPayable, balance) {
 
     <div id="total_Balance"><p style= "color: #fafafa">Saldo atual:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${balance}</p></div>
     
-    <div id="total_Balance"><p style= "color: #fafafa">Restante:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${balance - totalSumPayable}</p></div>`
+    <div id="total_Balance"><p style= "color: #fafafa">Restante:</p>&nbsp<p style= "color: ${colorBalance}">R$ ${balance - totalSumPayable}</p></div>`
 
-    
+
 }
 
 export function inserirDadosNaLista() {
@@ -121,17 +145,31 @@ export function inserirDadosNaLista() {
 
             let color = definirCor(dados[dado].situacao);
 
-            //insere na tela, uma lista de todos os dados armazenados no localStorage
-            lista +=
-                `<tr id = "table_row">
-            <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${dados[dado].descricao}</td>
-            <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
-            <td>${dados[dado].tipo}</td>
-            <td style= "color: ${color}">${dados[dado].situacao} </td>
-            </tr>`
+            if (dados[dado].vencimento) {
+                //insere na tela, uma lista de todos os dados armazenados no localStorage
+                lista +=
+                    `<tr id = "table_row">
+                    <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${dados[dado].descricao}</td>
+                    <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
+                    <td>${dados[dado].tipo}<p>(dia ${dados[dado].vencimento})</p></td>
+                    <td style= "color: ${color}">${dados[dado].situacao} </td>
+                    </tr>`
 
-            // faz a soma de todos os valores dos resultados armazenados
-            totalSum += Number(dados[dado].valor)
+                // faz a soma de todos os valores dos resultados armazenados
+                totalSum += Number(dados[dado].valor)
+            } else {
+                //insere na tela, uma lista de todos os dados armazenados no localStorage
+                lista +=
+                    `<tr id = "table_row">
+                    <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${dados[dado].descricao}</td>
+                    <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
+                    <td>${dados[dado].tipo}</td>
+                    <td style= "color: ${color}">${dados[dado].situacao} </td>
+                    </tr>`
+
+                // faz a soma de todos os valores dos resultados armazenados
+                totalSum += Number(dados[dado].valor)
+            }
 
             if (dados[dado].situacao === "a pagar" || dados[dado].situacao === "agendado") {
                 totalSumPayable += Number(dados[dado].valor)
@@ -169,14 +207,14 @@ export function filtrarDadosNaLista(month) {
     let totalSumPayable = 0;
     let balance = 0;
     let lista = '';
-   
+
 
     for (let dado in dados) {
 
         dataVerify = verificaDados(dados[dado]);
 
-        if(dados[dado].salario){
-            if(dados[dado].mes === month){
+        if (dados[dado].salario) {
+            if (dados[dado].mes === month) {
                 balance = dados[dado].salario
             }
         }

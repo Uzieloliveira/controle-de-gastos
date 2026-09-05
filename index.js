@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('click', (event) => {
 
     const pattern = event.target.closest('button')
+    const btnRadio = event.target.closest("input")
     const btnMonth = pattern
     const btnBack = pattern
     const btnSituation = pattern
@@ -74,11 +75,15 @@ document.addEventListener('click', (event) => {
             payable.classList.remove('btnClicked')
             scheduled.classList.remove('btnClicked')
 
+            event.preventDefault()
+
         } else if (btnSituation.matches('#payable')) {
 
             payable.classList.add('btnClicked')
             paid.classList.remove('btnClicked')
             scheduled.classList.remove('btnClicked')
+
+            event.preventDefault()
 
         } else if (btnSituation.matches('#scheduled')) {
 
@@ -86,7 +91,9 @@ document.addEventListener('click', (event) => {
             payable.classList.remove('btnClicked')
             paid.classList.remove('btnClicked')
 
+            event.preventDefault()
         }
+
     }
 
     if (btnBack) {
@@ -101,6 +108,54 @@ document.addEventListener('click', (event) => {
             voltarTelaInicio()
         }
     }
+
+    const popUp = document.getElementById('dueDate-container')
+    const dueDateView = document.getElementById('dueDateView')
+
+    // ouvinte que verifica qual opção de input do tipo radio button está selecionada
+    if (btnRadio) {
+
+        if (btnRadio.matches("#repetition")) {
+            // chama a tela de definição da data de vencimento
+            popUp.classList.remove("noActive");
+            popUp.classList.add("active");
+
+        } else if (btnRadio.matches("#variable")) {
+            dueDateView.innerHTML = `Dia: --`
+        }
+    }
+
+    if (pattern) {
+
+        if (pattern.matches('#close')) {
+
+            const type = document.querySelector("#repetition");
+
+            popUp.classList.remove('active');
+            popUp.classList.add('noActive');
+            type.checked = false
+
+            event.preventDefault();
+
+        } else if (pattern.matches('#confirm')) {
+            // captura o valor infomado no input 'dia' referente ao dia de vencimento
+            const day = document.getElementById('day').value
+
+            if (day) {
+
+                popUp.classList.remove('active');
+                popUp.classList.add('noActive');
+
+                document.getElementById('dueDateView').innerHTML = `Dia: ${day}`
+
+            } else {
+                alert("por favor, informe uma data!")
+            }
+
+            event.preventDefault();
+        }
+    }
+
 
 })
 
@@ -125,14 +180,34 @@ document.addEventListener('submit', (event) => {
             const type = document.querySelector('input[name="expense"]:checked')?.value;
             const form = document.getElementById('expensesForm');
             const situation = document.querySelector('.btnClicked');
+            const dueDate = document.getElementById("day").value;
 
             // Verifica se foi selecionado alguma das opções de "situação" (pago, a pagar, agendado)!
             if (situation !== null) {
-                // chamada da função responsável por guardar os dados no localhost da página
-                salvarDados(description, amount.toString(), month, type, situation.value);
 
-                //limpa os campos de input para que seja possível adicionar novos dados
-                form.reset()
+
+                if (type) {
+
+                    // verifica se o comapo referente ao dia de vencimento está preenchido
+                    if (dueDate !== "" && dueDate !== null && dueDate !== undefined) {
+
+                         // chamada da função responsável por guardar os dados no localhost da página
+                        salvarDados(description, amount.toString(), month, type, situation.value, dueDate);
+
+                        // reseta o valor apresentado para o vencimento
+                        document.getElementById('dueDateView').innerHTML = `Dia: --`
+
+                    } else {
+
+                        // chamada da função responsável por guardar os dados no localhost da página
+                        salvarDados(description, amount.toString(), month, type, situation.value);     
+                    }
+
+                    //limpa os campos de input para que seja possível adicionar novos dados
+                    form.reset()
+                } else {
+                    alert("Favor, selecione um tipo de despesa!")
+                }
             } else {
                 alert("Favor, selecione uma opção de situação!");
             }
@@ -142,13 +217,16 @@ document.addEventListener('submit', (event) => {
             const month_income = document.getElementById('month-income').value
             const form = document.getElementById('incomeForm');
 
+            // cadastro de uma nova receira (salário do mês)!
             adicionarReceita(income, month_income);
-            
+
             form.reset()
 
         }
     }
 })
+
+
 
 function voltarTelaInicio() {
     injetarHtml('Views/mainMenu', 'content');

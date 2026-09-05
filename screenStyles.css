@@ -9,7 +9,8 @@
 }
 
 #list h1,
-#add-expenses h1, #add-income h1{
+#add-expenses h1,
+#add-income h1 {
     width: 100%;
     height: 12%;
     min-height: 80px;
@@ -38,8 +39,22 @@
     width: 100%;
 }
 
-#add-expenses form, #add-income form {
+#incomeForm {
+    align-items: center;
+}
+
+#incomeForm i{
+    font-size: 5rem;
+}
+
+#incomeForm div{
+    width: 100%;
+}
+
+#add-expenses form,
+#add-income form {
     height: 85%;
+    width: 100vw;
     padding: 10% 20px;
     display: flex;
     flex-direction: column;
@@ -47,23 +62,25 @@
 
 }
 
-#add-expenses form div, #add-income form div {
+#add-expenses form div,
+#add-income form div {
+
+    max-width: 100%;
     display: flex;
     font-size: 1.2rem;
     font-family: var(---font-style-title);
 }
 
-#add-expenses form label, #add-income form label {
+#add-expenses form label,
+#add-income form label {
     width: 9rem;
-}
-
-#add-income form{
-    margin-top: 10vh;
 }
 
 #description,
 #amount,
-#month, #income, #month-income {
+#month,
+#income,
+#month-income {
     height: 7vh;
     width: 100%;
     min-width: 220px;
@@ -160,7 +177,9 @@
     padding: 30px;
 }
 
-#total_Sum, #total_SumPayable, #total_Balance {
+#total_Sum,
+#total_SumPayable,
+#total_Balance {
     display: flex;
     font-size: .8rem;
     font-family: var(---font-style-title);
@@ -227,7 +246,7 @@
     background-color: #121212;
 }
 
-#expenses_situation fieldset{
+#expenses_situation fieldset {
     height: 10vh;
     min-height: 70px;
     width: 100%;
@@ -262,7 +281,61 @@
     color: #021e49;
 }
 
-#expenses_situation .btnClicked{
+#expenses_situation .btnClicked {
     opacity: .5;
     border: solid 2px #030303;
+}
+
+#dueDate-container {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #0003079c;
+
+}
+
+#dueDate {
+    background: var(---background-color-gradient);
+    position: absolute;
+    height: 22vh;
+    width: 80vw;
+    top: 30%;
+    left: 10%;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#dueDate input {
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+#dueDate .btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+#dueDate .btns button {
+    padding: 10px;
+    width: 45%;
+    border-radius: 10px;
+    cursor: pointer;
+    border-style: none;
+}
+
+#dueDate .btns button:nth-child(1) {
+    background-color: #5fff4a;
+    color: #024928;
+}
+
+#dueDate .btns button:nth-child(2) {
+    background-color: #56c9ff;
+    color: #021e49;
 }
