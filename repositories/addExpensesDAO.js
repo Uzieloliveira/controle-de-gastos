@@ -148,7 +148,7 @@ export function inserirDadosNaLista() {
             if (dados[dado].vencimento) {
                 //insere na tela, uma lista de todos os dados armazenados no localStorage
                 lista +=
-                    `<tr id = "table_row">
+                    `<tr class = "table_row" id ="${dado}">
                     <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${dados[dado].descricao}</td>
                     <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
                     <td>${dados[dado].tipo}<p>(dia ${dados[dado].vencimento})</p></td>
@@ -160,7 +160,7 @@ export function inserirDadosNaLista() {
             } else {
                 //insere na tela, uma lista de todos os dados armazenados no localStorage
                 lista +=
-                    `<tr id = "table_row">
+                    `<tr class="table_row" id ="${dado}">
                     <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${dados[dado].descricao}</td>
                     <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
                     <td>${dados[dado].tipo}</td>
@@ -225,7 +225,7 @@ export function filtrarDadosNaLista(month) {
 
                 let color = definirCor(dados[dado].situacao);
                 lista +=
-                    `<tr id = "table_row">
+                    `<tr class = "table_row" id ="${dado}">
             <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${dados[dado].descricao}</td>
             <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${dados[dado].valor}</span></td>
             <td>${dados[dado].tipo}</td>

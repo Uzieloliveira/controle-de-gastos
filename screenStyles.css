@@ -151,10 +151,9 @@
 #list-expenses td {
     padding: 1rem 0.1rem;
     text-align: center;
-
 }
 
-#list-expenses #list-content #table_row {
+#list-expenses #list-content, .table_row {
     background-color: #333232;
     margin-right: 10px;
     border: solid 2px #4b4949;

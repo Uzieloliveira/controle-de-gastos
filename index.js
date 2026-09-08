@@ -27,6 +27,7 @@ document.addEventListener('click', (event) => {
     const btnSituation = pattern
     const btnArrowBack = event.target.closest('i')
     const btnMenu = event.target.closest('li');
+    const table_row = event.target.closest('tr');
 
 
     // identifica qual ícone do menu foi clicado e dispara um evendo chamando uma nova tela correspondente ao ícone
@@ -156,6 +157,14 @@ document.addEventListener('click', (event) => {
         }
     }
 
+    if (table_row) {
+        if (table_row.matches(".table_row")) {
+
+            const id = table_row.id
+            console.log("o id é: " + id)
+        }
+    }
+
 
 })
 
@@ -191,7 +200,7 @@ document.addEventListener('submit', (event) => {
                     // verifica se o comapo referente ao dia de vencimento está preenchido
                     if (dueDate !== "" && dueDate !== null && dueDate !== undefined) {
 
-                         // chamada da função responsável por guardar os dados no localhost da página
+                        // chamada da função responsável por guardar os dados no localhost da página
                         salvarDados(description, amount.toString(), month, type, situation.value, dueDate);
 
                         // reseta o valor apresentado para o vencimento
@@ -200,7 +209,7 @@ document.addEventListener('submit', (event) => {
                     } else {
 
                         // chamada da função responsável por guardar os dados no localhost da página
-                        salvarDados(description, amount.toString(), month, type, situation.value);     
+                        salvarDados(description, amount.toString(), month, type, situation.value);
                     }
 
                     //limpa os campos de input para que seja possível adicionar novos dados
