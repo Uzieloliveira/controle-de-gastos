@@ -28,12 +28,90 @@
         </thead>
 
         <tbody id="list-content">
-
+          <!-- espaço onde será injetado um html contendo os dados com todas as informações das despesas -->
         </tbody>
       </table>
     </div>
     <div id="displayInformations">
+      <!-- Espaço para mostrar os resultados dos valores e despesas do mês -->
+    </div>
 
+    <!-- div para criar uma camada que envolve toda a tela -->
+    <div id="allScreen" class="noActive">
+
+      <!-- container que segura o conteudo da tela de edição de despesa-->
+      <form class="edition toDown">
+        <span>Editar dados <i class="fa-regular fa-pen-to-square"></i></span>
+        <div class="inputNewDatas">
+
+          <!-- container que segura os compenentes que serão resposáveis pela entrada dos novos dados -->
+          <div class="content-edition">
+
+            <!-- edição da descrição da despesa-->
+            <div><label for="desc_edit">Descrição</label>
+              <input type="checkbox" class="desc_edit">
+            </div>
+
+            <div class="container_input_edit">
+              <input type="text" id="desc_edit">
+            </div>
+
+          </div>
+
+          <div class="content-edition">
+            <!-- edição do valor da despesa-->
+            <div><label for="amount_edit">Valor</label>
+              <input type="checkbox" class="amount_edit">
+            </div>
+            
+            <div class="container_input_edit">
+              <input type="number" id="amount_edit" style="text-align: center;">
+            </div>
+
+          </div>
+
+          <div class="content-edition">
+            <!-- edição do tipo da despesa-->
+            <div><label>Tipo</label>
+              <input type="checkbox" class="type_edit">
+            </div>
+
+            <div class="container_input_edit">
+
+              <select name="type_edit" id="type_edit">
+                <option>--selecione--</option>
+                <option value="variável">variável</option>
+                <option value="repetição">repetição</option>
+              </select>
+
+            </div>
+
+          </div>
+
+          <div class="content-edition">
+            <!-- edição da situação da despesa-->
+            <div><label for="situation_edit">Situação</label>
+              <input type="checkbox" class="situation_edit">
+            </div>
+
+            <div class="container_input_edit">
+              <select name="situation_edit" id="situation_edit">
+                <option>--selecione--</option>
+                <option value="pago">pago</option>
+                <option value="a pagar">a pagar</option>
+                <option value="agendado">agendado</option>
+              </select>
+
+            </div>
+
+          </div>
+          <!-- container que sergura o botão que salva os dados-->
+          <div class="btns_edition">
+            <button id="btn_save_edition">salvar</button>
+          </div>
+
+        </div>
+      </form>
     </div>
   </div>
 </div>

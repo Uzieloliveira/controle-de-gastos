@@ -5,6 +5,7 @@
     width: 100%;
     box-sizing: border-box;
     /* Impede que a página inteira role */
+    position: fixed;
     overflow: hidden;
 }
 
@@ -43,11 +44,11 @@
     align-items: center;
 }
 
-#incomeForm i{
+#incomeForm i {
     font-size: 5rem;
 }
 
-#incomeForm div{
+#incomeForm div {
     width: 100%;
 }
 
@@ -124,8 +125,8 @@
 .table-container {
     height: 50vh;
     /* Evita quebras em telas menores */
-    width: 100%;
-    margin-top: 10px;
+    width: 95%;
+    margin: 10px auto;
     overflow-y: auto;
     /* Cria a barra de rolagem vertical apenas na tabela */
     overflow-x: auto;
@@ -142,21 +143,25 @@
 #list-expenses thead {
     position: sticky;
     top: 0;
-    background-color: #121212;
-    z-index: 1;
 }
 
 /* Espaçamento interno das células */
 #list-expenses th,
 #list-expenses td {
-    padding: 1rem 0.1rem;
+    padding: .8rem 0.1rem;
     text-align: center;
 }
 
-#list-expenses #list-content, .table_row {
+
+#list-expenses #list-content .table_row {
     background-color: #333232;
     margin-right: 10px;
     border: solid 2px #4b4949;
+    transition: ease-in-out .2s;
+}
+
+#list-expenses #list-content .table_row .edit_Button {
+    cursor: pointer;
 }
 
 /* estilo para a barra que mostra as informações de valor e tipo de despesas */
@@ -285,14 +290,14 @@
     border: solid 2px #030303;
 }
 
-#dueDate-container {
+#dueDate-container,
+#allScreen {
     position: absolute;
     height: 100vh;
     width: 100%;
     top: 0;
     left: 0;
     background-color: #0003079c;
-
 }
 
 #dueDate {
@@ -337,4 +342,130 @@
 #dueDate .btns button:nth-child(2) {
     background-color: #56c9ff;
     color: #021e49;
+}
+
+
+.edition {
+    position: absolute;
+    bottom: 0;
+    background-color: #2b2c2b;
+    width: 100vw;
+    height: auto;
+    padding: 20px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    transition: ease-in-out .4s;
+    z-index: 2;
+    font-family: var(---font-style-title);
+    font-size: 1rem;
+}
+
+.edition span{
+    font-size: 1.3rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 500;
+}
+
+.edition .inputNewDatas {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.edition .inputNewDatas .content-edition {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    flex-direction: column;
+}
+
+.edition .inputNewDatas .content-edition div:nth-child(1) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+    height: 5vh;
+    max-width: 100px;
+}
+
+.edition .inputNewDatas .content-edition input[type="checkbox"] {
+    height: 1rem;
+    width: 1rem;
+    transform: scale(1.5);
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    border: solid 1px #8e8f8f;
+    border-radius: .2rem;
+    position: relative;
+}
+
+.edition .inputNewDatas .content-edition input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: .2rem;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0; /* Cria as linhas inferior e direita */
+  transform: rotate(45deg);   /* Gira para formar o 'visto' */
+}
+.content-edition .container_input_edit{
+    display: none;
+}
+
+.content-edition .container_input_edit input {
+    height: 2rem;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-self: center;
+    border-style: none;
+    font-size: 1rem;
+    outline: none;
+    background-color: transparent;
+    border-bottom: solid 2px var(---theme-color);
+    color: white;
+}
+
+.content-edition .container_input_edit select {
+    height: 2.5rem;
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 10px;
+    background-color: #4e4e4e;
+    color: var(---theme-color);
+    outline: none;
+    border-style: none;
+    border-radius: .2rem;
+    padding: 5px;
+}
+
+#btn_save_edition{
+    padding: .5rem;
+    margin-top: 2rem;
+    width: 6rem;
+    max-width: 200px;
+    font-size: 1rem;
+    background-color: transparent;
+    border-style: none;
+    color: var(---theme-color);
+    border: solid 1px var(---theme-color);
+    cursor: pointer;
+    border-radius: .2rem;
+}
+
+#btn_save_edition:hover{
+    background-color: #b3e2b3;
+}
+
+/* faz com que suba um formulário de edição até porte da tela. */
+.toDown {
+    bottom: -45vh;
+}
+
+.toUp {
+    bottom: 0;
 }

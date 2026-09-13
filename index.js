@@ -1,6 +1,9 @@
 //Importação das funções
-import { injetarHtml, chamarNovaTela } from "./controllers/screenControl.js";
-import { salvarDados, inserirDadosNaLista, filtrarDadosNaLista, adicionarReceita } from "./repositories/addExpensesDAO.js";
+import { injetarHtml, chamarNovaTela, voltarTelaInicio, fecharPopUp, inserirDadosNaLista, abrirPopUp } from "./controllers/screenControl.js";
+import { salvarDados, adicionarReceita, editarDados } from "./repositories/addExpensesDAO.js";
+
+// variável global responsável por receber o id da linha no momento do click no botão de edição.
+let id_table_row = null;
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -22,12 +25,13 @@ document.addEventListener('click', (event) => {
 
     const pattern = event.target.closest('button')
     const btnRadio = event.target.closest("input")
+    const btnArrowBack = event.target.closest('i')
+    const btnMenu = event.target.closest('li');
+    const btn_edition = event.target.closest('td');
     const btnMonth = pattern
     const btnBack = pattern
     const btnSituation = pattern
-    const btnArrowBack = event.target.closest('i')
-    const btnMenu = event.target.closest('li');
-    const table_row = event.target.closest('tr');
+    
 
 
     // identifica qual ícone do menu foi clicado e dispara um evendo chamando uma nova tela correspondente ao ícone
@@ -57,7 +61,9 @@ document.addEventListener('click', (event) => {
             const inputMont = document.getElementById('inputMonth').value
 
             if (inputMont !== "") {
-                filtrarDadosNaLista(inputMont)
+
+                // Recebe o valor informado no input e manda para a função que irá filtrar os dados
+                inserirDadosNaLista(inputMont);
             }
 
         }
@@ -110,30 +116,49 @@ document.addEventListener('click', (event) => {
         }
     }
 
-    const popUp = document.getElementById('dueDate-container')
+    const popUp_dueDate = document.getElementById('dueDate-container')
     const dueDateView = document.getElementById('dueDateView')
+    
 
     // ouvinte que verifica qual opção de input do tipo radio button está selecionada
     if (btnRadio) {
 
         if (btnRadio.matches("#repetition")) {
             // chama a tela de definição da data de vencimento
-            popUp.classList.remove("noActive");
-            popUp.classList.add("active");
+           abrirPopUp(popUp_dueDate)
 
         } else if (btnRadio.matches("#variable")) {
             dueDateView.innerHTML = `Dia: --`
         }
     }
 
+    if (btn_edition) {
+
+        if (btn_edition.matches(".edit_Button")) {
+            id_table_row = btn_edition.id
+            const form_edition = document.querySelector('.edition')
+            const tabela_row = document.getElementById(id_table_row);
+            const allScreen = document.getElementById('allScreen')
+
+            form_edition.classList.remove('toDown')
+            form_edition.classList.add('toUp')
+            allScreen.classList.remove('noActive')
+            allScreen.classList.add('active')
+
+            tabela_row.style = "background-color: #807e7e;";
+
+        }
+    }
+
     if (pattern) {
 
-        if (pattern.matches('#close')) {
+        // fecha o pop up onde o usuário informa uma data para o vencimento da despesa.
+        if (pattern.matches('#close_popUp_dueDate')) {
 
             const type = document.querySelector("#repetition");
 
-            popUp.classList.remove('active');
-            popUp.classList.add('noActive');
+            fecharPopUp(popUp_dueDate);
+
             type.checked = false
 
             event.preventDefault();
@@ -144,9 +169,9 @@ document.addEventListener('click', (event) => {
 
             if (day) {
 
-                popUp.classList.remove('active');
-                popUp.classList.add('noActive');
+                fecharPopUp(popUp_dueDate);
 
+                // insere o valor capiturado, no espaço dedicado para apresentação do dia de vencimento escolhido.
                 document.getElementById('dueDateView').innerHTML = `Dia: ${day}`
 
             } else {
@@ -154,17 +179,33 @@ document.addEventListener('click', (event) => {
             }
 
             event.preventDefault();
+
+        } else if (pattern.matches("#btn_save_edition")) {
+
+            const desc = document.querySelector('#desc_edit').value
+            const amount = document.querySelector('#amount_edit').value
+            const type = document.querySelector('#type_edit').value
+            const situation = document.querySelector('#situation_edit').value;
+            const tabela_row = document.getElementById(id_table_row);
+            const allScreen = document.getElementById('allScreen');
+            const form_edition = document.querySelector('.edition')
+     
+            editarDados(id_table_row, desc, amount, type, situation);
+
+            // formatação do comportamento do formulário de edição
+            form_edition.classList.remove('toUp')
+            form_edition.classList.add('toDown')
+            allScreen.classList.remove('active')
+            allScreen.classList.add('noActive')
+            // remove o aspecto de linha 'selecionada' da lista
+            tabela_row.style = " background-color: #333232;"
+
+            // recarrega a lista editada
+            inserirDadosNaLista();
+
+            form_edition.reset()
         }
     }
-
-    if (table_row) {
-        if (table_row.matches(".table_row")) {
-
-            const id = table_row.id
-            console.log("o id é: " + id)
-        }
-    }
-
 
 })
 
@@ -193,7 +234,6 @@ document.addEventListener('submit', (event) => {
 
             // Verifica se foi selecionado alguma das opções de "situação" (pago, a pagar, agendado)!
             if (situation !== null) {
-
 
                 if (type) {
 
@@ -237,8 +277,4 @@ document.addEventListener('submit', (event) => {
 
 
 
-function voltarTelaInicio() {
-    injetarHtml('Views/mainMenu', 'content');
-    chamarNovaTela('mainMenu');
-}
 

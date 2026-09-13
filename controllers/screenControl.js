@@ -1,3 +1,6 @@
+import { verificarDados } from "../controllers/dataVerify.js";
+import { obterTodoLocalStorage } from "../repositories/addExpensesDAO.js";
+
 export function injetarHtml(path, id) {
 
     fetch(path).then(response => {
@@ -11,6 +14,20 @@ export function injetarHtml(path, id) {
             const divContent = document.getElementById(`${id}`);
             divContent.innerHTML = html
         })
+}
+
+export function fecharPopUp(element) {
+    if (element) {
+        element.classList.remove('active');
+        element.classList.add('noActive');
+    }
+}
+
+export function abrirPopUp(element) {
+    if (element) {
+        element.classList.remove("noActive");
+        element.classList.add("active");
+    }
 }
 
 // Função responsável por chamar uma nova tela 
@@ -31,4 +48,196 @@ export function chamarNovaTela(name_screen) {
         newScreen.classList.remove('noActive');
     }
 }
+
+export function voltarTelaInicio() {
+    injetarHtml('Views/mainMenu', 'content');
+    chamarNovaTela('mainMenu');
+}
+
+// define uma cor para cada tipo de valor da coluna 'situação'(pago, a pagar, agendado),apresentada na lista de despesas!
+function definirCor(dado) {
+    if (dado === "pago") {
+        return "#5fff4a";
+    } else if (dado === "a pagar") {
+        return "#ff3f3f";
+    } else if (dado === "agendado") {
+        return "#56c9ff";
+    }
+
+    if (dado < 0) {
+        return "#ff3f3f";
+    } else {
+        return "rgb(8, 194, 132);"
+    }
+}
+
+// insere os valores dentro de um texto
+function inserirInfomacaoRodapeLista(totalSum, totalSumPayable, balance) {
+
+    let sum = balance - totalSumPayable
+    let colorBalance = definirCor(sum)
+
+    return ` 
+    <div id="total_SumPayable"><p style= "color: #fafafa">Valor total a pagar / agendado:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${totalSumPayable} </p></div>
+
+    <div id="total_Sum"><p style= "color: #fafafa">Soma total:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${totalSum}</p></div>
+
+    <div id="total_Balance"><p style= "color: #fafafa">Saldo atual:</p>&nbsp<p style= "color: var(---theme-color)">R$ ${balance}</p></div>
+    
+    <div id="total_Balance"><p style= "color: #fafafa">Restante:</p>&nbsp<p style= "color: ${colorBalance}">R$ ${balance - totalSumPayable}</p></div>`
+
+}
+
+function criarListaFormatada(datas, month) {
+
+    let results = {};
+    let totalSum = 0;
+    let totalSumPayable = 0;
+    let list = '';
+    let font_color_situation;
+    let balance = 0
+
+    for (let id in datas) {
+
+        //constante usada para fazer a verificação da validade dos dados
+        const dataVerify = verificarDados(datas[id]);
+        font_color_situation = definirCor(datas[id].situacao);
+
+        if (dataVerify) {
+
+            if (month) {
+                if (datas[id].mes === month) {
+
+                    list +=
+                        `<tr class = "table_row" id ="${id}">
+
+                            <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${datas[id].descricao}</td>
+
+                            <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${datas[id].valor}</span></td>
+
+                            <td>${datas[id].tipo}</td>
+
+                            <td style= "color: ${font_color_situation}">${datas[id].situacao}</td>
+
+                            <td id ="${id}" class="edit_Button"><i class="fa-regular fa-pen-to-square"></i></td>
+                        </tr>`
+
+                    // faz a soma de todos os valores dos resultados armazenados
+                    totalSum += Number(datas[id].valor)
+
+                    // faz a soma de todos os valores de despesas 'a pagar' e 'agendada'
+                    if (datas[id].situacao === "a pagar" || datas[id].situacao === "agendado") {
+                        totalSumPayable += Number(datas[id].valor)
+                    }
+                }
+
+            } else {
+
+                if (datas[id].vencimento) {
+                    //insere na tela, uma lista de todos os dados armazenados no localStorage
+                    list +=
+                        `<tr class = "table_row" id ="${id}">
+                            <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${datas[id].descricao}</td>
+
+                            <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${datas[id].valor}</span></td>
+
+                            <td>${datas[id].tipo}<p>(dia ${datas[id].vencimento})</p></td>
+
+                            <td style= "color: ${font_color_situation}">${datas[id].situacao} </td>
+
+                            <td id ="${id}" class="edit_Button"><i class="fa-regular fa-pen-to-square"></i></td> 
+                        </tr>`
+
+                    // faz a soma de todos os valores dos resultados armazenados
+                    totalSum += Number(datas[id].valor)
+
+                    // faz a soma de todos os valores de despesas 'a pagar' e 'agendada'
+                    if (datas[id].situacao === "a pagar" || datas[id].situacao === "agendado") {
+                        totalSumPayable += Number(datas[id].valor)
+                    }
+
+                } else {
+                    //insere na tela, uma lista de todos os dados armazenados no localStorage
+                    list +=
+                        `<tr class="table_row" id ="${id}">
+                            <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${datas[id].descricao}</td>
+
+                            <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${datas[id].valor}</span></td>
+
+                            <td>${datas[id].tipo}</td>
+
+                            <td style= "color: ${font_color_situation}">${datas[id].situacao} </td>
+
+                            <td id ="${id}" class="edit_Button"><i class="fa-regular fa-pen-to-square"></i></td>
+                        </tr>`
+
+                    // faz a soma de todos os valores dos resultados armazenados
+                    totalSum += Number(datas[id].valor)
+
+                    // faz a soma de todos os valores de despesas 'a pagar' e 'agendada'
+                    if (datas[id].situacao === "a pagar" || datas[id].situacao === "agendado") {
+                        totalSumPayable += Number(datas[id].valor)
+                    }
+                }
+            }
+
+        }
+
+        // salva o salário na variável 'balance', que será mostrado na tela da lista junto as demais informações.
+        if (datas[id].salario) {
+            if (datas[id].mes == month) {
+
+                balance = Number(datas[id].salario)
+
+            }
+        }
+    }
+
+    return results = {
+        lista: list,
+        soma_total: totalSum,
+        total_a_pagar: totalSumPayable,
+        saldo_atual: balance
+    };
+}
+
+export function inserirDadosNaLista(month) {
+
+    //adiciona os dados em uma constante
+    const dados = obterTodoLocalStorage();
+    let formatedList = '';
+
+    if (month) {
+
+        formatedList = criarListaFormatada(dados, month)
+
+    } else {
+        formatedList = criarListaFormatada(dados);
+    }
+
+    fetch("./Views/listScreen").then(response => {
+        if (!response.ok) {
+            // se o arquivo não existir ou der erro, avisa no console
+            throw new Error("Erro ao carregar a tela: " + response.statusText);
+        }
+        return response.text();
+    })
+        .then(html => {
+            const tabela = document.querySelector('tbody');
+            if (tabela) {
+
+                // injeta uma lista na tela com os campos preenchidos
+                tabela.innerHTML = formatedList.lista;
+
+
+            }
+            const informacoes = document.querySelector("#displayInformations");
+
+            if (informacoes) {
+
+                informacoes.innerHTML = inserirInfomacaoRodapeLista(formatedList.soma_total, formatedList.total_a_pagar, formatedList.saldo_atual);
+            }
+        })
+}
+
 

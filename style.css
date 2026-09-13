@@ -71,7 +71,7 @@
     box-shadow: 0 1px 15px 1px #131212;
 
     font-size: 0.9em;
-     font-family: "DM Sans", sans-serif;
+    font-family: "DM Sans", sans-serif;
     color: var(---font-color-title);
     background-color: var(---background-color-gradient);
 }
