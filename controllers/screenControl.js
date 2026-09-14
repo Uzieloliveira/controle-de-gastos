@@ -188,7 +188,6 @@ function criarListaFormatada(datas, month) {
             if (datas[id].mes == month) {
 
                 balance = Number(datas[id].salario)
-
             }
         }
     }
@@ -240,4 +239,36 @@ export function inserirDadosNaLista(month) {
         })
 }
 
+export function mostrarEsconderInput(component, container_input, id_input, id_input_select) {
 
+    const input_value = document.getElementById(id_input);
+    const input_select = document.getElementById(id_input_select);
+
+    if (component.checked) {
+        container_input.style = "display: flex;"
+    } else {
+
+        if (input_select) {
+            container_input.style = "display: none;"
+            input_select.value = "--selecione--"
+        } else {
+            container_input.style = "display: none;"
+            input_value.value = '';
+        }
+
+    }
+}
+
+// função responsável por esconder os inputs novamente após salvar os dados
+export function resetarInputs() {
+    const input_desc_edit = document.querySelector(".container_input_edit_desc");
+    const input_amount_edit = document.querySelector(".container_input_edit_amount");
+    const input_type_edit = document.querySelector(".container_input_edit_type");
+    const input_situation_edit = document.querySelector(".container_input_edit_situation");
+
+    const list_input_reset = [input_desc_edit, input_amount_edit, input_type_edit, input_situation_edit]
+
+    for (let i = 0; i < list_input_reset.length; i++) {
+        list_input_reset[i].style = "display: none";
+    }
+}

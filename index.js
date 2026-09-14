@@ -1,5 +1,5 @@
 //Importação das funções
-import { injetarHtml, chamarNovaTela, voltarTelaInicio, fecharPopUp, inserirDadosNaLista, abrirPopUp } from "./controllers/screenControl.js";
+import { injetarHtml, chamarNovaTela, voltarTelaInicio, fecharPopUp, inserirDadosNaLista, abrirPopUp, mostrarEsconderInput, resetarInputs } from "./controllers/screenControl.js";
 import { salvarDados, adicionarReceita, editarDados } from "./repositories/addExpensesDAO.js";
 
 // variável global responsável por receber o id da linha no momento do click no botão de edição.
@@ -28,10 +28,11 @@ document.addEventListener('click', (event) => {
     const btnArrowBack = event.target.closest('i')
     const btnMenu = event.target.closest('li');
     const btn_edition = event.target.closest('td');
+    const container_allScreen = event.target.closest('div');
     const btnMonth = pattern
     const btnBack = pattern
     const btnSituation = pattern
-    
+
 
 
     // identifica qual ícone do menu foi clicado e dispara um evendo chamando uma nova tela correspondente ao ícone
@@ -118,14 +119,14 @@ document.addEventListener('click', (event) => {
 
     const popUp_dueDate = document.getElementById('dueDate-container')
     const dueDateView = document.getElementById('dueDateView')
-    
+
 
     // ouvinte que verifica qual opção de input do tipo radio button está selecionada
     if (btnRadio) {
 
         if (btnRadio.matches("#repetition")) {
             // chama a tela de definição da data de vencimento
-           abrirPopUp(popUp_dueDate)
+            abrirPopUp(popUp_dueDate)
 
         } else if (btnRadio.matches("#variable")) {
             dueDateView.innerHTML = `Dia: --`
@@ -189,7 +190,7 @@ document.addEventListener('click', (event) => {
             const tabela_row = document.getElementById(id_table_row);
             const allScreen = document.getElementById('allScreen');
             const form_edition = document.querySelector('.edition')
-     
+
             editarDados(id_table_row, desc, amount, type, situation);
 
             // formatação do comportamento do formulário de edição
@@ -204,6 +205,30 @@ document.addEventListener('click', (event) => {
             inserirDadosNaLista();
 
             form_edition.reset()
+        }
+    }
+
+    if (container_allScreen) {
+        if (container_allScreen.matches('#allScreen')) {
+
+            const form_edition = document.querySelector('.edition');
+            const tabela_row = document.getElementById(id_table_row);
+
+            form_edition.classList.remove('toUp')
+            form_edition.classList.add('toDown')
+            container_allScreen.classList.remove('active')
+            container_allScreen.classList.add('noActive')
+
+            // formatação do comportamento do formulário de edição
+            form_edition.classList.remove('toUp')
+            form_edition.classList.add('toDown')
+            allScreen.classList.remove('active')
+            allScreen.classList.add('noActive')
+            // remove o aspecto de linha 'selecionada' da lista
+            tabela_row.style = " background-color: #333232;"
+
+            form_edition.reset();
+            resetarInputs()
         }
     }
 
@@ -255,7 +280,7 @@ document.addEventListener('submit', (event) => {
                     //limpa os campos de input para que seja possível adicionar novos dados
                     form.reset()
                 } else {
-                    alert("Favor, selecione um tipo de despesa!")
+                    alert("Favor, selecione um tipo de despesa!");
                 }
             } else {
                 alert("Favor, selecione uma opção de situação!");
@@ -275,6 +300,36 @@ document.addEventListener('submit', (event) => {
     }
 })
 
+document.addEventListener('change', (event) => {
+    const checkbox = event.target.closest('input');
+
+    if (checkbox) {
+        if (checkbox.matches('.desc_edit')) {
+            const input_desc_edit = document.querySelector(".container_input_edit_desc");
+
+            mostrarEsconderInput(checkbox, input_desc_edit, 'desc_edit');
+        }
+
+        if (checkbox.matches('.amount_edit')) {
+            const input_amount_edit = document.querySelector(".container_input_edit_amount");
+
+            mostrarEsconderInput(checkbox, input_amount_edit, 'amount_edit');
+        }
+
+        if (checkbox.matches('.type_edit')) {
+            const input_type_edit = document.querySelector(".container_input_edit_type");
+
+            mostrarEsconderInput(checkbox, input_type_edit, null, 'type_edit');
+        }
+
+        if (checkbox.matches('.situation_edit')) {
+            const input_situation_edit = document.querySelector(".container_input_edit_situation");
+
+            mostrarEsconderInput(checkbox, input_situation_edit, null, 'situation_edit');
+        }
+
+    }
+});
 
 
 

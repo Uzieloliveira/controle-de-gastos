@@ -412,11 +412,11 @@
   border-width: 0 2px 2px 0; /* Cria as linhas inferior e direita */
   transform: rotate(45deg);   /* Gira para formar o 'visto' */
 }
-.content-edition .container_input_edit{
+.content-edition #main-container_edit{
     display: none;
 }
 
-.content-edition .container_input_edit input {
+.content-edition #main-container_edit input {
     height: 2rem;
     width: 100%;
     padding: 10px;
@@ -430,7 +430,7 @@
     color: white;
 }
 
-.content-edition .container_input_edit select {
+.content-edition #main-container_edit select {
     height: 2.5rem;
     width: 100%;
     font-size: 1rem;

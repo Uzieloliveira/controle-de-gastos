@@ -1,3 +1,5 @@
+import { resetarInputs } from "../controllers/screenControl.js";
+
 export function obterTodoLocalStorage() {
     const dados = {};
 
@@ -122,6 +124,8 @@ export function editarDados(id, desc, amount, type, situation) {
 
         localStorage.setItem(id, JSON.stringify(dados[id]));
         alert('dados editados com sucesso!')
+
+        resetarInputs();
 
     } catch {
         console.error('erro ao editar dados!');
