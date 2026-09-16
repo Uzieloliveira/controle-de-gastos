@@ -228,7 +228,6 @@ export function inserirDadosNaLista(month) {
                 // injeta uma lista na tela com os campos preenchidos
                 tabela.innerHTML = formatedList.lista;
 
-
             }
             const informacoes = document.querySelector("#displayInformations");
 
@@ -265,8 +264,9 @@ export function resetarInputs() {
     const input_amount_edit = document.querySelector(".container_input_edit_amount");
     const input_type_edit = document.querySelector(".container_input_edit_type");
     const input_situation_edit = document.querySelector(".container_input_edit_situation");
+    const input_dueDate_edit = document.querySelector('#dueDate_edit');
 
-    const list_input_reset = [input_desc_edit, input_amount_edit, input_type_edit, input_situation_edit]
+    const list_input_reset = [input_desc_edit, input_amount_edit, input_type_edit, input_situation_edit, input_dueDate_edit];
 
     for (let i = 0; i < list_input_reset.length; i++) {
         list_input_reset[i].style = "display: none";

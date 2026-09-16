@@ -414,6 +414,8 @@
 }
 .content-edition #main-container_edit{
     display: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .content-edition #main-container_edit input {
@@ -441,6 +443,10 @@
     border-style: none;
     border-radius: .2rem;
     padding: 5px;
+}
+
+.content-edition #main-container_edit #dueDate_edit{
+    text-align: center;
 }
 
 #btn_save_edition{

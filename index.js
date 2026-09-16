@@ -45,6 +45,7 @@ document.addEventListener('click', (event) => {
             //função responsável por encontrar a tela correspondente ao icone clicado
             chamarNovaTela(screen);
 
+
             if (screen) {
                 // Caso a tela chamada for a da lista de despesas, adiciona os itens na lista antes de mostrá-la
                 if (btnMenu.matches('.listScreen')) {
@@ -133,7 +134,11 @@ document.addEventListener('click', (event) => {
         }
     }
 
+    // verifica se o botão de edição foi clicado
     if (btn_edition) {
+
+        // esconde os inputs da tela de edição, para mostrar somente as caixinhas de seleção.
+        resetarInputs();
 
         if (btn_edition.matches(".edit_Button")) {
             id_table_row = btn_edition.id
@@ -141,11 +146,13 @@ document.addEventListener('click', (event) => {
             const tabela_row = document.getElementById(id_table_row);
             const allScreen = document.getElementById('allScreen')
 
+            // mostra uma tela de edição
             form_edition.classList.remove('toDown')
             form_edition.classList.add('toUp')
             allScreen.classList.remove('noActive')
             allScreen.classList.add('active')
 
+            // muda a cor de fundo da linha, para dar inpressão de que ela está selecionada.
             tabela_row.style = "background-color: #807e7e;";
 
         }
@@ -172,7 +179,7 @@ document.addEventListener('click', (event) => {
 
                 fecharPopUp(popUp_dueDate);
 
-                // insere o valor capiturado, no espaço dedicado para apresentação do dia de vencimento escolhido.
+                // insere o valor capturado, no espaço dedicado para apresentação do dia de vencimento escolhido.
                 document.getElementById('dueDateView').innerHTML = `Dia: ${day}`
 
             } else {
@@ -187,11 +194,12 @@ document.addEventListener('click', (event) => {
             const amount = document.querySelector('#amount_edit').value
             const type = document.querySelector('#type_edit').value
             const situation = document.querySelector('#situation_edit').value;
+            const dueDate = document.querySelector('#dueDate_edit').value
             const tabela_row = document.getElementById(id_table_row);
             const allScreen = document.getElementById('allScreen');
             const form_edition = document.querySelector('.edition')
 
-            editarDados(id_table_row, desc, amount, type, situation);
+            editarDados(id_table_row, desc, amount, type, situation, dueDate);
 
             // formatação do comportamento do formulário de edição
             form_edition.classList.remove('toUp')
@@ -302,6 +310,7 @@ document.addEventListener('submit', (event) => {
 
 document.addEventListener('change', (event) => {
     const checkbox = event.target.closest('input');
+    const selectType = event.target.closest('select');
 
     if (checkbox) {
         if (checkbox.matches('.desc_edit')) {
@@ -328,6 +337,19 @@ document.addEventListener('change', (event) => {
             mostrarEsconderInput(checkbox, input_situation_edit, null, 'situation_edit');
         }
 
+    }
+
+    if(selectType){
+        if(selectType.matches("#type_edit")){
+            const type_edit = document.getElementById("type_edit").value;
+            const input_dueDate_edit = document.getElementById("dueDate_edit");
+
+            if(type_edit === "repetição"){
+                input_dueDate_edit.style = "display: flex";
+            }else{
+                input_dueDate_edit.style = "display: none";
+            }
+        }
     }
 });
 

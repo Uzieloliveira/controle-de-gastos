@@ -99,7 +99,7 @@ export function adicionarReceita(income, month_income) {
     }
 }
 
-export function editarDados(id, desc, amount, type, situation) {
+export function editarDados(id, desc, amount, type, situation, dueDate) {
 
     const dados = obterTodoLocalStorage();
 
@@ -107,16 +107,31 @@ export function editarDados(id, desc, amount, type, situation) {
         if (dado == id) {
 
             if (desc !== "") {
-                dados[id].descricao = desc
+                dados[id].descricao = desc;
             }
             if (amount > 0) {
-                dados[id].valor = amount
+                dados[id].valor = amount;
             }
             if (type !== "--selecione--") {
-                dados[id].tipo = type
+                dados[id].tipo = type;
+
+                if (type === "repetição") {
+                    if (dueDate > 0) {
+                        dados[id].vencimento = dueDate;
+                    }
+
+                } else {
+                    
+                    // verifica a existência do atributo vencimento 
+                    if (("vencimento" in dados[id])) {
+
+                        delete dados[id].vencimento;
+
+                    }
+                }
             }
             if (situation !== "--selecione--") {
-                dados[id].situacao = situation
+                dados[id].situacao = situation;
             }
         }
     }
