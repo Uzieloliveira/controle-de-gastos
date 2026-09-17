@@ -1,3 +1,4 @@
+import { verificarDadosEditados } from "../controllers/dataVerify.js";
 import { resetarInputs } from "../controllers/screenControl.js";
 
 export function obterTodoLocalStorage() {
@@ -101,49 +102,52 @@ export function adicionarReceita(income, month_income) {
 
 export function editarDados(id, desc, amount, type, situation, dueDate) {
 
-    const dados = obterTodoLocalStorage();
+    const datas = obterTodoLocalStorage();
+    const dataVerifyEdit = verificarDadosEditados(desc, amount, type, situation, dueDate);
 
-    for (let dado in dados) {
+    for (let dado in datas) {
         if (dado == id) {
 
             if (desc !== "") {
-                dados[id].descricao = desc;
+                datas[id].descricao = desc;
             }
             if (amount > 0) {
-                dados[id].valor = amount;
+                datas[id].valor = amount;
             }
             if (type !== "--selecione--") {
-                dados[id].tipo = type;
+                datas[id].tipo = type;
 
                 if (type === "repetição") {
                     if (dueDate > 0) {
-                        dados[id].vencimento = dueDate;
+                        datas[id].vencimento = dueDate;
                     }
-
                 } else {
-                    
+
                     // verifica a existência do atributo vencimento 
-                    if (("vencimento" in dados[id])) {
-
-                        delete dados[id].vencimento;
-
+                    if (("vencimento" in datas[id])) {
+                        delete datas[id].vencimento;
                     }
                 }
             }
             if (situation !== "--selecione--") {
-                dados[id].situacao = situation;
+                datas[id].situacao = situation;
             }
         }
     }
-    try {
 
-        localStorage.setItem(id, JSON.stringify(dados[id]));
-        alert('dados editados com sucesso!')
+    if (dataVerifyEdit) {
+        try {
 
-        resetarInputs();
+            localStorage.setItem(id, JSON.stringify(datas[id]));
+            alert('dados editados com sucesso!')
 
-    } catch {
-        console.error('erro ao editar dados!');
+            resetarInputs();
+
+        } catch {
+            console.error('erro ao editar dados!');
+        }
+    } else {
+         alert('edição cancelada, nehum campo foi preenchido!')
     }
 
 }

@@ -105,8 +105,14 @@ function criarListaFormatada(datas, month) {
 
         if (dataVerify) {
 
+            let showDueDate = ""
+
             if (month) {
                 if (datas[id].mes === month) {
+
+                    if (datas[id].vencimento) {
+                        showDueDate = `<p>(dia ${datas[id].vencimento})`
+                    }
 
                     list +=
                         `<tr class = "table_row" id ="${id}">
@@ -115,7 +121,7 @@ function criarListaFormatada(datas, month) {
 
                             <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${datas[id].valor}</span></td>
 
-                            <td>${datas[id].tipo}</td>
+                            <td>${datas[id].tipo}${showDueDate}</p></td>
 
                             <td style= "color: ${font_color_situation}">${datas[id].situacao}</td>
 
@@ -134,50 +140,28 @@ function criarListaFormatada(datas, month) {
             } else {
 
                 if (datas[id].vencimento) {
-                    //insere na tela, uma lista de todos os dados armazenados no localStorage
-                    list +=
-                        `<tr class = "table_row" id ="${id}">
+                    showDueDate = `<p>(dia ${datas[id].vencimento})`
+                }
+                //insere na tela, uma lista de todos os dados armazenados no localStorage
+                list +=
+                    `<tr class = "table_row" id ="${id}">
                             <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${datas[id].descricao}</td>
 
                             <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${datas[id].valor}</span></td>
 
-                            <td>${datas[id].tipo}<p>(dia ${datas[id].vencimento})</p></td>
+                            <td>${datas[id].tipo}${showDueDate}</p></td>
 
                             <td style= "color: ${font_color_situation}">${datas[id].situacao} </td>
 
                             <td id ="${id}" class="edit_Button"><i class="fa-regular fa-pen-to-square"></i></td> 
                         </tr>`
 
-                    // faz a soma de todos os valores dos resultados armazenados
-                    totalSum += Number(datas[id].valor)
+                // faz a soma de todos os valores dos resultados armazenados
+                totalSum += Number(datas[id].valor)
 
-                    // faz a soma de todos os valores de despesas 'a pagar' e 'agendada'
-                    if (datas[id].situacao === "a pagar" || datas[id].situacao === "agendado") {
-                        totalSumPayable += Number(datas[id].valor)
-                    }
-
-                } else {
-                    //insere na tela, uma lista de todos os dados armazenados no localStorage
-                    list +=
-                        `<tr class="table_row" id ="${id}">
-                            <td style= "color: var(---theme-color); text-align: left;">&nbsp&nbsp${datas[id].descricao}</td>
-
-                            <td style = "text-align: left;">R$&nbsp&nbsp<span style= "color: var(---theme-color);">${datas[id].valor}</span></td>
-
-                            <td>${datas[id].tipo}</td>
-
-                            <td style= "color: ${font_color_situation}">${datas[id].situacao} </td>
-
-                            <td id ="${id}" class="edit_Button"><i class="fa-regular fa-pen-to-square"></i></td>
-                        </tr>`
-
-                    // faz a soma de todos os valores dos resultados armazenados
-                    totalSum += Number(datas[id].valor)
-
-                    // faz a soma de todos os valores de despesas 'a pagar' e 'agendada'
-                    if (datas[id].situacao === "a pagar" || datas[id].situacao === "agendado") {
-                        totalSumPayable += Number(datas[id].valor)
-                    }
+                // faz a soma de todos os valores de despesas 'a pagar' e 'agendada'
+                if (datas[id].situacao === "a pagar" || datas[id].situacao === "agendado") {
+                    totalSumPayable += Number(datas[id].valor)
                 }
             }
 

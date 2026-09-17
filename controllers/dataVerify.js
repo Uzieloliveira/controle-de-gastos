@@ -29,3 +29,24 @@ export function verificarDados(listData) {
     //retorna True or False
     return result;
 }
+
+export function verificarDadosEditados(desc, amount, type, situation, dueDate) {
+
+    var result = null;
+
+    if (desc !== '' || amount !== '' || type !== '--selecione--' || situation !== '--selecione--' || dueDate !== '') {
+
+       if(type === 'repetição' && dueDate === ''){
+            return false;
+       } else {
+            return true;
+       }
+
+    } else {
+
+        result = false;
+    }
+
+    //retorna True or False
+    return result;
+}

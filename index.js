@@ -198,6 +198,7 @@ document.addEventListener('click', (event) => {
             const tabela_row = document.getElementById(id_table_row);
             const allScreen = document.getElementById('allScreen');
             const form_edition = document.querySelector('.edition')
+            const month = document.getElementById('inputMonth').value
 
             editarDados(id_table_row, desc, amount, type, situation, dueDate);
 
@@ -209,8 +210,13 @@ document.addEventListener('click', (event) => {
             // remove o aspecto de linha 'selecionada' da lista
             tabela_row.style = " background-color: #333232;"
 
-            // recarrega a lista editada
-            inserirDadosNaLista();
+            if (month) {
+                // recarrega a lista editada
+                inserirDadosNaLista(month);
+            } else {
+                // recarrega a lista editada
+                inserirDadosNaLista();
+            }
 
             form_edition.reset()
         }
@@ -339,14 +345,14 @@ document.addEventListener('change', (event) => {
 
     }
 
-    if(selectType){
-        if(selectType.matches("#type_edit")){
+    if (selectType) {
+        if (selectType.matches("#type_edit")) {
             const type_edit = document.getElementById("type_edit").value;
             const input_dueDate_edit = document.getElementById("dueDate_edit");
 
-            if(type_edit === "repetição"){
+            if (type_edit === "repetição") {
                 input_dueDate_edit.style = "display: flex";
-            }else{
+            } else {
                 input_dueDate_edit.style = "display: none";
             }
         }
