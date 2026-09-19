@@ -147,7 +147,7 @@ export function editarDados(id, desc, amount, type, situation, dueDate) {
             console.error('erro ao editar dados!');
         }
     } else {
-         alert('edição cancelada, nehum campo foi preenchido!')
+         alert('edição cancelada, nenhum campo foi preenchido!')
     }
 
 }

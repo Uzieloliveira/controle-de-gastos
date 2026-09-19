@@ -16,13 +16,12 @@
     /* ---font-color-icons: #06DBFF; */
     ---font-color-title: #FFFFFF;
     ---background-color-top-bar: radial-gradient(circle, rgb(61, 61, 61) 10%, rgba(7, 7, 7, 0.986) 99%);
-    ---theme-color: rgb(8, 194, 132);
+    ---theme-color: rgb(7, 245, 166);
     ---background-color-gradient: radial-gradient(circle, rgba(76, 78, 78, 0.925) 21%, rgb(19, 18, 18) 88%);
 
 }
 
 .main-container {
-    position: relative;
     width: 100vw;
     height: 100vh;
     margin: 0;
@@ -55,69 +54,86 @@
 
 /* título principal do sistema */
 #main-title {
-    height: 10vh;
-    max-height: 300px;
-    min-height: 200px;
+    height: 7vh;
     width: 100%;
 
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    border-radius: 0 0 2rem 2rem;
-    padding: 0 100px 0 100px;
-    box-shadow: 0 1px 15px 1px #131212;
 
     font-size: 0.9em;
     font-family: "DM Sans", sans-serif;
     color: var(---font-color-title);
-    background-color: var(---background-color-gradient);
-}
-
-#main-title p {
-    font-size: 1.5em;
-    font-weight: 100;
-    color: #d5d8d6;
-    position: absolute;
-    top: 15px;
-    background-color: #f7faf836;
-    padding: 10px;
-    border-top-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    z-index: 2;
+    background-color: #313131;
 }
 
 #main-title img {
-    height: 100%;
-    /* opacity: .2; */
+    height: 100px;
+    width: 100px;
 }
 
+#main-title section {
+    display: flex;
+    gap: 10px;
+}
+
+#slide{
+    height: 25vh;
+    width: 100vw;
+    border: solid 1px#2c2b2b;
+    margin-top: 5vh;
+    overflow: hidden;
+}
+
+#slide img{
+   max-height: 100%;
+}
+
+#slide section{
+    height: 100%;
+    width: auto;
+    display: flex;
+    overflow-x: auto;
+    padding-left: 10%;
+}
 
 /* menu principal */
 #main-menu {
     height: auto;
     padding: 5%;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20%;
+    display: flex;
+    flex-direction: column;
 
     color: var(---theme-color);
     font-family: var(---font-style-title);
     text-align: center;
+    gap: 2vh;
+    text-align: left;
+}
+
+#main-menu h2{
+    color: #ebe5e5; 
+    font-size: 1.5rem;
 }
 
 
 /* formato para icones de imagem */
 #main-menu li img {
-    width: 5rem;
+    width: 20%;
     max-width: 50px;
 }
 
 #main-menu li {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5vw;
+    font-size: 1.3rem;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #585858;
+    box-shadow: 5px 5px 10px #2c2b2b;
+    border: solid 1px #dfe0df;
 }
 
 #copyright {

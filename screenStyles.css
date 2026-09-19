@@ -13,15 +13,13 @@
 #add-expenses h1,
 #add-income h1 {
     width: 100%;
-    height: 12%;
-    min-height: 80px;
+    height: 7vh;
+    font-size: 1.8rem;
 
     display: flex;
     align-items: center;
 
-    padding: 0;
-    border-radius: 0 0 20px 20px;
-    justify-content: center;
+    justify-content: start;
     flex-shrink: 0;
     font-family: var(---font-style-title);
 
@@ -33,11 +31,11 @@
     margin-top: 20px;
 }
 
-
 /* estilo para tela de cadastro de despesas */
 #add-expenses {
     height: 100vh;
     width: 100%;
+    background-color: #2b2c2b;
 }
 
 #incomeForm {
@@ -52,15 +50,13 @@
     width: 100%;
 }
 
-#add-expenses form,
-#add-income form {
-    height: 85%;
+#add-expenses form {
+    height: auto;
     width: 100vw;
     padding: 10% 20px;
     display: flex;
     flex-direction: column;
     gap: 2vh;
-
 }
 
 #add-expenses form div,
@@ -68,29 +64,34 @@
 
     max-width: 100%;
     display: flex;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-family: var(---font-style-title);
+    flex-direction: column;
 }
 
-#add-expenses form label,
-#add-income form label {
-    width: 9rem;
-}
 
 #description,
 #amount,
 #month,
 #income,
 #month-income {
-    height: 7vh;
-    width: 100%;
-    min-width: 220px;
-
-    border-radius: 0.5rem;
+    padding: 5px;
+    font-size: 1.5rem;
+    margin-top: 2vh;
+    background-color: transparent;
     border-style: none;
-    padding: 10px;
-    font-size: 1.2rem;
+    border-bottom: solid 1.2px var(---theme-color);
+    outline: none;
+    color: white;
     text-align: center;
+}
+
+#month{
+    background-color: #606160;
+    border-radius: 50px;
+    border: none;
+    padding: 10px;
+    color: var(---theme-color);
 }
 
 
@@ -102,19 +103,14 @@
     justify-content: space-between;
 }
 
-.buttonSubmit #btnBack {
-    background-color: rgb(18, 164, 231);
-    color: rgb(2, 47, 68);
-}
-
 .buttonSubmit button {
     width: 100%;
-    height: 45%;
-    margin: 0 auto;
-    border-radius: 1rem;
+    height: 35%;
+    margin: 2vh auto;
+    border-radius: 2rem;
     border-style: none;
 
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: rgb(4, 63, 43);
     background-color: var(---theme-color);
     cursor: pointer;
@@ -230,21 +226,21 @@
     font-size: 1.2rem;
 }
 
-.options fieldset {
-    border: 2px solid #333;
+#options fieldset {
+    border: 2px solid #555454;
     padding: 15px;
     border-radius: 8px;
     width: 100%;
-
 }
 
-.options fieldset div {
+#options fieldset div {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 15px;
 }
 
-.options fieldset div input[type="radio"] {
+#options fieldset div input[type="radio"] {
     height: 5vh;
     width: 5vw;
     background-color: #121212;
@@ -264,30 +260,28 @@
     min-width: 100px;
     width: 30%;
     border-radius: 50px;
-    border-style: none;
+    border: solid 2px var(---theme-color);
     cursor: pointer;
-    font-size: .9rem;
+    font-size: 1.2rem;
     margin-top: 1rem;
+    background-color: transparent;
 }
 
 #expenses_situation button:nth-child(2) {
-    background-color: #5fff4a;
-    color: #024928;
+    color: #78e2b1;
 }
 
 #expenses_situation button:nth-child(3) {
-    background-color: #ff3f3f;
-    color: #300101;
+    color: #f32525;
 }
 
 #expenses_situation button:nth-child(4) {
-    background-color: #56c9ff;
-    color: #021e49;
+    color: #4d8be9;
 }
 
 #expenses_situation .btnClicked {
     opacity: .5;
-    border: solid 2px #030303;
+    background-color: #4d4c4c;
 }
 
 #dueDate-container,
@@ -360,7 +354,7 @@
     font-size: 1rem;
 }
 
-.edition span{
+.edition span {
     font-size: 1.3rem;
     font-family: "DM Sans", sans-serif;
     font-weight: 500;
@@ -403,16 +397,19 @@
 }
 
 .edition .inputNewDatas .content-edition input[type="checkbox"]:checked::after {
-  content: '';
-  position: absolute;
-  left: .2rem;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0; /* Cria as linhas inferior e direita */
-  transform: rotate(45deg);   /* Gira para formar o 'visto' */
+    content: '';
+    position: absolute;
+    left: .2rem;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    /* Cria as linhas inferior e direita */
+    transform: rotate(45deg);
+    /* Gira para formar o 'visto' */
 }
-.content-edition #main-container_edit{
+
+.content-edition #main-container_edit {
     display: none;
     display: flex;
     flex-direction: column;
@@ -445,13 +442,14 @@
     padding: 5px;
 }
 
-.content-edition #main-container_edit #dueDate_edit{
+.content-edition #main-container_edit #dueDate_edit {
     text-align: center;
 }
 
-#btn_save_edition{
+#btn_save_edition {
     padding: .5rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 6vh;
     width: 6rem;
     max-width: 200px;
     font-size: 1rem;
@@ -463,7 +461,7 @@
     border-radius: .2rem;
 }
 
-#btn_save_edition:hover{
+#btn_save_edition:hover {
     background-color: #b3e2b3;
 }
 

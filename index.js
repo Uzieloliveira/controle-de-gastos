@@ -30,7 +30,6 @@ document.addEventListener('click', (event) => {
     const btn_edition = event.target.closest('td');
     const container_allScreen = event.target.closest('div');
     const btnMonth = pattern
-    const btnBack = pattern
     const btnSituation = pattern
 
 
@@ -105,13 +104,7 @@ document.addEventListener('click', (event) => {
 
     }
 
-    if (btnBack) {
-
-        if (btnBack.matches('#btnBack')) {
-            voltarTelaInicio()
-        }
-
-    } else if (btnArrowBack) {
+    if (btnArrowBack) {
 
         if (btnArrowBack.matches('#arrowBack')) {
             voltarTelaInicio()
