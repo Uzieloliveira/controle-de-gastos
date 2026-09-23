@@ -241,6 +241,78 @@ export function mostrarEsconderInput(component, container_input, id_input, id_in
 
     }
 }
+export function definirEstiloBotao(btnSituation, event) {
+
+
+    const paid = document.getElementById("paid")
+    const payable = document.getElementById("payable")
+    const scheduled = document.getElementById("scheduled")
+
+    if (btnSituation !== null) {
+
+        if (btnSituation.matches('#paid')) {
+
+            paid.style.backgroundColor = "#78e2b1";
+            payable.style.backgroundColor = "transparent";
+            scheduled.style.backgroundColor = "transparent";
+            payable.style.color = "#fafafa";
+            scheduled.style.color = "#fafafa";
+            paid.style.color = "#022515";
+
+            paid.classList.add('btnClicked')
+            payable.classList.remove('btnClicked')
+            scheduled.classList.remove('btnClicked')
+
+            event.preventDefault()
+
+        } else if (btnSituation.matches('#payable')) {
+
+            paid.style.backgroundColor = "transparent";
+            payable.style.backgroundColor = "#f32525";
+            scheduled.style.backgroundColor = "transparent";
+            paid.style.color = "#fafafa";
+            scheduled.style.color = "#fafafa";
+            payable.style.color = "#3f0404";
+
+            payable.classList.add('btnClicked')
+            paid.classList.remove('btnClicked')
+            scheduled.classList.remove('btnClicked')
+
+            event.preventDefault()
+
+
+        } else if (btnSituation.matches('#scheduled')) {
+
+            paid.style.backgroundColor = "transparent";
+            payable.style.backgroundColor = "transparent";
+            scheduled.style.backgroundColor = "#56c9ff";
+            paid.style.color = "#fafafa";
+            payable.style.color = "#fafafa";
+            scheduled.style.color = "#022738";
+
+            scheduled.classList.add('btnClicked')
+            paid.classList.remove('btnClicked')
+            payable.classList.remove('btnClicked')
+
+            event.preventDefault()
+        }
+
+    } else {
+        paid.style.backgroundColor = "transparent";
+        payable.style.backgroundColor = "transparent";
+        scheduled.style.backgroundColor = "transparent";
+        paid.style.color = "#fafafa";
+        payable.style.color = "#fafafa";
+        scheduled.style.color = "#fafafa";
+
+        paid.classList.remove('btnClicked')
+        payable.classList.remove('btnClicked')
+        scheduled.classList.remove('btnClicked')
+
+        event.preventDefault()
+    }
+}
+
 
 // função responsável por esconder os inputs novamente após salvar os dados
 export function resetarInputs() {

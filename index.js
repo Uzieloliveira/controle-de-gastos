@@ -1,5 +1,5 @@
 //Importação das funções
-import { injetarHtml, chamarNovaTela, voltarTelaInicio, fecharPopUp, inserirDadosNaLista, abrirPopUp, mostrarEsconderInput, resetarInputs } from "./controllers/screenControl.js";
+import { injetarHtml, chamarNovaTela, voltarTelaInicio, fecharPopUp, inserirDadosNaLista, abrirPopUp, mostrarEsconderInput, resetarInputs, definirEstiloBotao } from "./controllers/screenControl.js";
 import { salvarDados, adicionarReceita, editarDados } from "./repositories/addExpensesDAO.js";
 
 // variável global responsável por receber o id da linha no momento do click no botão de edição.
@@ -73,35 +73,12 @@ document.addEventListener('click', (event) => {
 
 
     if (btnSituation) {
-        const paid = document.getElementById("paid")
-        const payable = document.getElementById("payable")
-        const scheduled = document.getElementById("scheduled")
 
-        if (btnSituation.matches('#paid')) {
+        if (btnSituation.matches('#paid, #payable, #scheduled')) {
 
-            paid.classList.add('btnClicked')
-            payable.classList.remove('btnClicked')
-            scheduled.classList.remove('btnClicked')
+            definirEstiloBotao(btnSituation, event);
 
-            event.preventDefault()
-
-        } else if (btnSituation.matches('#payable')) {
-
-            payable.classList.add('btnClicked')
-            paid.classList.remove('btnClicked')
-            scheduled.classList.remove('btnClicked')
-
-            event.preventDefault()
-
-        } else if (btnSituation.matches('#scheduled')) {
-
-            scheduled.classList.add('btnClicked')
-            payable.classList.remove('btnClicked')
-            paid.classList.remove('btnClicked')
-
-            event.preventDefault()
-        }
-
+        } 
     }
 
     if (btnArrowBack) {
@@ -285,6 +262,7 @@ document.addEventListener('submit', (event) => {
                     }
 
                     //limpa os campos de input para que seja possível adicionar novos dados
+                    definirEstiloBotao(null,event);
                     form.reset()
                 } else {
                     alert("Favor, selecione um tipo de despesa!");
