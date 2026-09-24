@@ -40,7 +40,15 @@
 }
 
 #incomeForm {
+    height: 70vh;
     align-items: center;
+    display: flex;
+    padding: 5vh 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto 1rem;
+    background-color: #0f0f0f;
+    border-radius: 2rem;
 }
 
 #incomeForm i {
@@ -49,6 +57,7 @@
 
 #incomeForm div {
     width: 100%;
+
 }
 
 #add-expenses form {
@@ -114,13 +123,15 @@
 /* Estilo para a tabela que mostra a lista de despesas*/
 /* Container que limita a altura da tabela e cria a rolagem */
 .table-container {
-    height: 50vh;
+    height: 75vh;
     /* Evita quebras em telas menores */
     width: 95%;
     margin: 10px auto;
     overflow-y: auto;
     /* Cria a barra de rolagem vertical apenas na tabela */
     overflow-x: auto;
+    border-radius: 1rem;
+    border: solid 1px #4b4949;
 }
 
 /* Garante que a tabela ocupe a largura do container */
@@ -134,6 +145,7 @@
 #list-expenses thead {
     position: sticky;
     top: 0;
+    background-color: #03030393;
 }
 
 /* Espaçamento interno das células */
@@ -145,10 +157,11 @@
 
 
 #list-expenses #list-content .table_row {
-    background-color: #333232;
+    background-color: #0707078f;
     margin-right: 10px;
-    border: solid 2px #4b4949;
+    border: solid 1px #4b4949;
     transition: ease-in-out .2s;
+    font-size: .7rem;
 }
 
 #list-expenses #list-content .table_row .edit_Button {
@@ -160,16 +173,25 @@
     height: 20vh;
     width: 90vw;
     position: absolute;
-    bottom: 20px;
+    bottom: 60px;
     left: 5%;
     z-index: 2;
     background-color: #3d3d3d;
     padding: 10px;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 2rem;
     padding: 30px;
+}
+    
+#info-icon {
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(---theme-color);
 }
 
 #total_Sum,

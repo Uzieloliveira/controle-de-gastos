@@ -26,6 +26,7 @@ document.addEventListener('click', (event) => {
     const pattern = event.target.closest('button')
     const btnRadio = event.target.closest("input")
     const btnArrowBack = event.target.closest('i')
+    const btnInfo = event.target.closest('i')
     const btnMenu = event.target.closest('li');
     const btn_edition = event.target.closest('td');
     const container_allScreen = event.target.closest('div');
@@ -85,6 +86,13 @@ document.addEventListener('click', (event) => {
 
         if (btnArrowBack.matches('#arrowBack')) {
             voltarTelaInicio()
+        }
+    }
+
+    if(btnInfo) {
+        if(btnInfo.matches('#info-icon')) {
+            const infoContainer = document.getElementById('displayInformations');
+            infoContainer.style.display = 'flex';
         }
     }
 
@@ -178,7 +186,7 @@ document.addEventListener('click', (event) => {
             allScreen.classList.remove('active')
             allScreen.classList.add('noActive')
             // remove o aspecto de linha 'selecionada' da lista
-            tabela_row.style = " background-color: #333232;"
+            tabela_row.style = " background-color: #0707078f;"
 
             if (month) {
                 // recarrega a lista editada
@@ -209,7 +217,7 @@ document.addEventListener('click', (event) => {
             allScreen.classList.remove('active')
             allScreen.classList.add('noActive')
             // remove o aspecto de linha 'selecionada' da lista
-            tabela_row.style = " background-color: #333232;"
+            tabela_row.style = " background-color: #0707078f;"
 
             form_edition.reset();
             resetarInputs()
